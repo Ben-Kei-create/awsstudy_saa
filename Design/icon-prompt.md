@@ -1,0 +1,5 @@
+# App icon
+
+Generated with the built-in image_gen tool, resized to opaque 1024×1024 PNG for the app icon. BrandMark uses the same image on the start screen.
+
+Prompt: Create a final 1024x1024 square opaque iPhone app icon for SAA STUDY, an AWS solutions architect learning quiz. Flat refined minimal geometric design. Solid deep navy background #101F35 edge to edge, never white. One bold warm amber-orange #FFAB40 architectural cloud emblem in center: a simple cloud at top connected by a short centered stem to a horizontal connector and three evenly spaced rounded square nodes below, forming a beautifully balanced cloud architecture diagram as a unified compact symbol. Thick, optically consistent rounded strokes, generous negative space, centered 68% of canvas width, instantly readable at 32px. Cloud and three nodes symbolize cloud system design and three-choice quizzes. ONLY navy and amber solid colors. No text, letters, numbers, brands, AWS logos or smiles, glass, gradients, texture, shadows, shine, 3D, border, external rounded-square container or device mockup. Distinctive, simple and sophisticated.

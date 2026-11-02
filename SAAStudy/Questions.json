@@ -1,0 +1,1172 @@
+[
+  {
+    "id": "saa-01",
+    "stage": 0,
+    "domain": "security",
+    "prompt": "EC2上のアプリから特定のS3バケットだけを読み取りたい。長期アクセスキーを保存しない構成は？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "最小権限のIAMロールをEC2に付与する",
+        "reason": "インスタンスプロファイル経由で一時的な認証情報を取得でき、必要なバケットの読み取り権限に絞れます。"
+      },
+      {
+        "id": "b",
+        "text": "IAMユーザーのキーをAMIに埋め込む",
+        "reason": "長期キーがイメージに残り、漏えいとローテーションの負担が生じます。"
+      },
+      {
+        "id": "c",
+        "text": "S3バケットをパブリックにする",
+        "reason": "EC2以外からもアクセスできてしまい、アクセスを限定する要件に合いません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "AWS上のワークロードには、一時的な認証情報を使うIAMロール。",
+    "sourceURL": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html"
+  },
+  {
+    "id": "saa-02",
+    "stage": 0,
+    "domain": "security",
+    "prompt": "WebアプリのRDSをインターネットに公開せず、アプリサーバーからのDB接続だけ許可したい。適切な構成は？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "RDSをプライベート配置し、アプリのSGからDBポートだけ許可",
+        "reason": "RDSを非公開にし、DBのセキュリティグループで送信元をアプリのセキュリティグループに限定します。"
+      },
+      {
+        "id": "b",
+        "text": "RDSを公開し、0.0.0.0/0からDBポートを許可",
+        "reason": "接続元をインターネット全体に広げるため、非公開・接続元限定の要件を満たしません。"
+      },
+      {
+        "id": "c",
+        "text": "RDSを公開し、DBパスワードだけを長くする",
+        "reason": "強いパスワードだけでは、ネットワークを非公開にする要件を満たしません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "データ層はプライベートに。SG参照でアプリ層だけを許可する。",
+    "sourceURL": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.RDSSecurityGroups.html"
+  },
+  {
+    "id": "saa-03",
+    "stage": 0,
+    "domain": "security",
+    "prompt": "顧客データを置くS3バケットで、誤ったパブリックACLやパブリックポリシーによる公開を防ぎたい。最適な機能は？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "S3 Block Public Access",
+        "reason": "パブリックアクセスにつながるACLやポリシーを制限するための専用の保護機能です。"
+      },
+      {
+        "id": "b",
+        "text": "S3 Transfer Acceleration",
+        "reason": "遠距離からの転送を高速化する機能で、公開設定の防止機能ではありません。"
+      },
+      {
+        "id": "c",
+        "text": "S3イベント通知",
+        "reason": "オブジェクト操作の通知に使う機能で、パブリックアクセスを遮断しません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "誤公開へのガードレールには、S3 Block Public Access。",
+    "sourceURL": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html"
+  },
+  {
+    "id": "saa-04",
+    "stage": 0,
+    "domain": "security",
+    "prompt": "S3の保存データを暗号化し、自社で鍵の利用権限とローテーションを管理したい。適切な方式は？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "カスタマーマネージドKMSキーによるSSE-KMS",
+        "reason": "自社管理のKMSキーで、キーポリシーやローテーションの設定を管理できます。"
+      },
+      {
+        "id": "b",
+        "text": "SSE-S3だけを使用する",
+        "reason": "保存時暗号化はできますが、顧客がKMSキーの利用権限やローテーションを管理する方式ではありません。"
+      },
+      {
+        "id": "c",
+        "text": "HTTPSだけを必須にする",
+        "reason": "HTTPSは転送中の保護で、保存データの暗号化と鍵管理の要件を満たしません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "保存時と転送中の暗号化を分けて考え、鍵の管理主体を確認する。",
+    "sourceURL": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html"
+  },
+  {
+    "id": "saa-05",
+    "stage": 0,
+    "domain": "resilience",
+    "prompt": "RDS for MySQLでAZ障害に備えたい。主目的は読み取り性能の拡張ではなく、自動フェイルオーバーである。選ぶ構成は？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Multi-AZ DBインスタンス配置",
+        "reason": "別AZの同期スタンバイを用意し、障害時に自動フェイルオーバーします。"
+      },
+      {
+        "id": "b",
+        "text": "同じAZのEC2へ日次でSQLをエクスポート",
+        "reason": "日次エクスポートは自動フェイルオーバー構成ではなく、同じAZの障害にも弱い構成です。"
+      },
+      {
+        "id": "c",
+        "text": "単一AZのDBインスタンスを大型化",
+        "reason": "性能は向上しても、AZ障害時の自動切り替え先は用意されません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "RDSのMulti-AZ DBインスタンス配置は、高可用性が主目的。",
+    "sourceURL": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZSingleStandby.html"
+  },
+  {
+    "id": "saa-06",
+    "stage": 0,
+    "domain": "resilience",
+    "prompt": "EC2のWebサービスを、1台や1つのAZの障害でも継続したい。最適な基本構成は？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "複数AZのAuto Scalingグループ＋ALB",
+        "reason": "複数AZに処理を分散し、ALBのヘルスチェックとAuto Scalingによる置き換えを組み合わせます。"
+      },
+      {
+        "id": "b",
+        "text": "1台の大きなEC2に固定する",
+        "reason": "1台に集約すると、そのインスタンスやAZが単一障害点になります。"
+      },
+      {
+        "id": "c",
+        "text": "同じサブネットにEC2を2台だけ固定配置",
+        "reason": "インスタンス障害への備えにはなりますが、サブネットが属するAZの障害には対応できません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "高可用性は、複数台だけでなく複数AZで設計する。",
+    "sourceURL": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-benefits.html"
+  },
+  {
+    "id": "saa-07",
+    "stage": 0,
+    "domain": "resilience",
+    "prompt": "注文受付と画像生成を同期処理している。生成処理が遅くても受付を止めず、ワーカーを独立して増やしたい。間に置くものは？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Amazon SQSのキュー",
+        "reason": "メッセージをバッファーして受付と処理を疎結合にし、ワーカーを独立してスケールできます。"
+      },
+      {
+        "id": "b",
+        "text": "両処理を同じEC2の同じプロセスに統合",
+        "reason": "受付と生成の障害や負荷が結び付き、独立した拡張が難しくなります。"
+      },
+      {
+        "id": "c",
+        "text": "受付側のタイムアウトだけを長くする",
+        "reason": "待機時間を延ばしても処理の結合は解消せず、受付側のリソースを占有します。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "処理の速度差を吸収するバッファーにはSQS。",
+    "sourceURL": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html"
+  },
+  {
+    "id": "saa-08",
+    "stage": 0,
+    "domain": "resilience",
+    "prompt": "1件の注文イベントを、請求・配送・分析の3つの処理へそれぞれ確実に渡し、処理速度も分離したい。適切な構成は？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "SNSトピックから用途別のSQSキューへ配信",
+        "reason": "SNSでファンアウトし、各SQSキューでメッセージを保持するため、利用側ごとに処理を進められます。"
+      },
+      {
+        "id": "b",
+        "text": "1つのSQSキューを3つの用途で共有",
+        "reason": "同じメッセージを通常は1つのコンシューマーが取得するため、各用途へ1件ずつ渡す構成にはなりません。"
+      },
+      {
+        "id": "c",
+        "text": "SNSから1台のEC2だけへ送り全用途を実行",
+        "reason": "受け取り先が単一になり、用途別の処理速度や障害を分離できません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "全利用者に配信するSNSと、処理を保持するSQSを組み合わせる。",
+    "sourceURL": "https://docs.aws.amazon.com/sns/latest/dg/sns-sqs-as-subscriber.html"
+  },
+  {
+    "id": "saa-09",
+    "stage": 0,
+    "domain": "performance",
+    "prompt": "LinuxのEC2を複数AZで増減させる。各サーバーから同じファイル群をNFSで同時に読み書きしたい。適切なストレージは？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Amazon EFS",
+        "reason": "マネージドNFSファイルストレージとして、複数AZのLinuxクライアントで共有できます。"
+      },
+      {
+        "id": "b",
+        "text": "各EC2に個別のEBSボリューム",
+        "reason": "個別のブロックボリュームでは、複数AZにまたがる共通NFSファイル領域になりません。"
+      },
+      {
+        "id": "c",
+        "text": "各EC2のインスタンスストア",
+        "reason": "ホストに結び付く一時的なローカル領域であり、複数AZの共有ファイルシステムではありません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "複数LinuxサーバーでNFS共有するならEFS。",
+    "sourceURL": "https://docs.aws.amazon.com/efs/latest/ug/whatisefs.html"
+  },
+  {
+    "id": "saa-10",
+    "stage": 0,
+    "domain": "performance",
+    "prompt": "S3上の静的な画像を世界中の利用者へ低遅延で配信したい。オリジンへのリクエストも減らしたい。適切なサービスは？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Amazon CloudFront",
+        "reason": "エッジロケーションにコンテンツをキャッシュし、利用者に近い場所から配信できます。"
+      },
+      {
+        "id": "b",
+        "text": "Amazon Route 53だけを追加",
+        "reason": "DNSは名前解決やルーティングを行いますが、画像自体をエッジにキャッシュしません。"
+      },
+      {
+        "id": "c",
+        "text": "S3を1つのEC2のEBSへコピーして配信",
+        "reason": "配信元が1台に集中し、世界各地のエッジキャッシュにはなりません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "世界規模のコンテンツ配信とキャッシュにはCloudFront。",
+    "sourceURL": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html"
+  },
+  {
+    "id": "saa-11",
+    "stage": 0,
+    "domain": "performance",
+    "prompt": "RDS for MySQLでレポート用SELECTが増え、読み取り負荷を分離したい。多少のレプリケーション遅延は許容できる。選ぶ機能は？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "リードレプリカにレポートを振り分ける",
+        "reason": "非同期レプリカへの読み取りをアプリで振り分け、プライマリの負荷を軽減できます。"
+      },
+      {
+        "id": "b",
+        "text": "Multi-AZ DBインスタンスのスタンバイへSELECTを送る",
+        "reason": "この配置のスタンバイはフェイルオーバー用であり、読み取りエンドポイントとして利用できません。"
+      },
+      {
+        "id": "c",
+        "text": "すべてのSELECTを同じDBへ再試行する",
+        "reason": "負荷が高いDBへさらにリクエストが集まり、読み取りの分散にはなりません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "読み取り拡張と障害対策は、目的を分けて選択する。",
+    "sourceURL": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html"
+  },
+  {
+    "id": "saa-12",
+    "stage": 0,
+    "domain": "cost",
+    "prompt": "新サービスのDynamoDBで、アクセス量が予測できず急増もあり得る。キャパシティの事前見積もりを避けたい。まず選ぶモードは？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "オンデマンドキャパシティ",
+        "reason": "リクエストに応じた課金で、読み書き容量を事前にプロビジョニングする運用を減らせます。"
+      },
+      {
+        "id": "b",
+        "text": "想定ピーク分の容量を常に固定確保",
+        "reason": "アクセスが少ない時間にも大きな容量を維持し、予測不能なサービスで無駄が出やすくなります。"
+      },
+      {
+        "id": "c",
+        "text": "毎回テーブルを削除して再作成",
+        "reason": "容量の管理方法ではなく、データ消失とサービス停止につながります。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "不確実な需要と運用負担を考慮し、DynamoDBの容量モードを選ぶ。",
+    "sourceURL": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/on-demand-capacity-mode.html"
+  },
+  {
+    "id": "saa-13",
+    "stage": 0,
+    "domain": "cost",
+    "prompt": "チェックポイントから再実行できる夜間バッチをEC2で動かす。中断は許容でき、料金を抑えたい。適切な購入オプションは？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Spotインスタンス",
+        "reason": "空き容量を割引料金で利用できます。中断に備えたチェックポイントと再試行が前提です。"
+      },
+      {
+        "id": "b",
+        "text": "Dedicated Hostを固定確保",
+        "reason": "専用物理ホストが必要なライセンス等の要件がなく、今回のコスト優先の条件には適しません。"
+      },
+      {
+        "id": "c",
+        "text": "全処理をピーク時サイズのオンデマンドで常時起動",
+        "reason": "中断可能な夜間バッチに対し、常時大きな容量を維持する必要はありません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "中断に耐えられる処理ではSpotを検討する。",
+    "sourceURL": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html"
+  },
+  {
+    "id": "saa-14",
+    "stage": 0,
+    "domain": "cost",
+    "prompt": "監査ログを長期間保管する。取り出しはまれで、復元には数時間かかってよい。S3 Standardからの移行候補は？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "S3 Glacier Flexible Retrieval",
+        "reason": "長期アーカイブ向けで、数時間の復元を許容するまれな取り出しに適します。"
+      },
+      {
+        "id": "b",
+        "text": "すべてをS3 Standardのまま保持",
+        "reason": "低遅延アクセスが不要な長期データに対して、保存コストを下げる余地があります。"
+      },
+      {
+        "id": "c",
+        "text": "すべてをEC2のインスタンスストアへ移す",
+        "reason": "インスタンスの終了等で失われ得る一時領域で、長期監査ログの保管先には不適切です。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "保存コストだけでなく、復元時間と取り出し頻度も要件にする。",
+    "sourceURL": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html"
+  },
+  {
+    "id": "saa-15",
+    "stage": 0,
+    "domain": "cost",
+    "prompt": "同一リージョンのプライベートEC2がS3へ大量アクセスし、NAT Gatewayの処理料金が増えている。適切な改善は？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "S3ゲートウェイエンドポイントを使う",
+        "reason": "S3への経路をゲートウェイエンドポイントへ向けると、対象通信でNATを経由せずに済みます。"
+      },
+      {
+        "id": "b",
+        "text": "NAT Gatewayをさらに大型化する",
+        "reason": "NAT Gatewayのインスタンスサイズを手動で大型化する操作はなく、S3通信の経路も変わりません。"
+      },
+      {
+        "id": "c",
+        "text": "S3アクセスをすべて別リージョンへ変更",
+        "reason": "リージョン間転送が増え、同一リージョン内のS3通信を最適化する目的に合いません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "S3・DynamoDB向けのゲートウェイエンドポイントでNAT経由を減らす。",
+    "sourceURL": "https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html"
+  },
+  {
+    "id": "saa-16",
+    "stage": 1,
+    "domain": "security",
+    "prompt": "RDSの接続パスワードをコードから外し、対応エンジンで定期的な自動ローテーションも行いたい。適切なサービスは？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "AWS Secrets Manager",
+        "reason": "シークレットの保管・取得に加え、対応する仕組みで認証情報の自動ローテーションを構成できます。"
+      },
+      {
+        "id": "b",
+        "text": "SSM Parameter StoreのSecureStringへ保存するだけ",
+        "reason": "暗号化した値の保管はできますが、保存するだけではDB認証情報の定期ローテーションは構成されません。"
+      },
+      {
+        "id": "c",
+        "text": "パスワードをKMSキーの説明欄に保管",
+        "reason": "KMSは鍵を管理するサービスで、キーの説明欄はアプリのシークレット保管場所ではありません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "秘密情報の保管と更新を、アプリコードから切り離す。",
+    "sourceURL": "https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html"
+  },
+  {
+    "id": "saa-17",
+    "stage": 1,
+    "domain": "security",
+    "prompt": "AWS Organizationsのメンバーアカウントで、IAM管理者でも特定リージョン外への操作を行えないよう上限を設けたい。使うものは？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "OUまたはアカウントに適用するSCP",
+        "reason": "SCPはメンバーアカウントで利用できる権限の上限を制御します。SCP自体が権限を付与するわけではありません。"
+      },
+      {
+        "id": "b",
+        "text": "管理アカウントのIAMユーザーポリシーだけ",
+        "reason": "別アカウント内の全プリンシパルに対する組織の権限上限にはなりません。"
+      },
+      {
+        "id": "c",
+        "text": "AWS Budgetsの通知だけ",
+        "reason": "予算通知は費用を監視するもので、IAM管理者のリージョン操作を直接制限しません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "SCPは組織の権限上限。IAMによる許可とは別に評価される。",
+    "sourceURL": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html"
+  },
+  {
+    "id": "saa-18",
+    "stage": 1,
+    "domain": "security",
+    "prompt": "外部の監視事業者へAWSアカウントの限定的な読み取り権限を渡す。長期キーを共有せず、confused deputy対策もしたい。適切な方法は？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "External IDを条件にしたクロスアカウントロール",
+        "reason": "信頼ポリシーで事業者とExternal IDを制限し、AssumeRoleで一時的な認証情報を使います。"
+      },
+      {
+        "id": "b",
+        "text": "ルートユーザーのアクセスキーを共有",
+        "reason": "強すぎる長期認証情報の共有であり、最小権限・一時認証の要件に合いません。"
+      },
+      {
+        "id": "c",
+        "text": "バケットやAPIをすべてパブリックにする",
+        "reason": "特定の外部事業者だけにアクセスを限定できません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "外部事業者とのロール連携では、External IDによる条件を検討する。",
+    "sourceURL": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_third-party.html"
+  },
+  {
+    "id": "saa-19",
+    "stage": 1,
+    "domain": "security",
+    "prompt": "CloudFront経由だけでS3の画像を配信し、利用者によるS3への直接アクセスを防ぎたい。通常のS3バケットオリジンで選ぶ構成は？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "OACと配信元を制限したバケットポリシー",
+        "reason": "Origin Access Controlを使い、対象のCloudFrontディストリビューションからの要求だけを許可できます。"
+      },
+      {
+        "id": "b",
+        "text": "S3バケットをパブリックにしてURLを隠す",
+        "reason": "URLを隠してもS3への直接アクセスは制御できません。"
+      },
+      {
+        "id": "c",
+        "text": "S3のWebサイトエンドポイントにOACを設定",
+        "reason": "S3 Webサイトエンドポイントはカスタムオリジン扱いで、OACを利用するこの構成の対象ではありません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "非公開S3をCloudFrontで配るなら、通常のS3オリジンとOAC。",
+    "sourceURL": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html"
+  },
+  {
+    "id": "saa-20",
+    "stage": 1,
+    "domain": "resilience",
+    "prompt": "メインサイトの障害時に、DNSで待機サイトへ誘導したい。両サイトの稼働状態を監視する前提で選ぶRoute 53ポリシーは？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "フェイルオーバールーティング",
+        "reason": "ヘルスチェック等の状態を使い、プライマリが利用できないときにセカンダリへ誘導します。"
+      },
+      {
+        "id": "b",
+        "text": "位置情報ルーティングだけ",
+        "reason": "利用者の地理的位置に応じた応答が主目的で、プライマリ／セカンダリ切り替えの指定ではありません。"
+      },
+      {
+        "id": "c",
+        "text": "シンプルルーティングに同じ値を固定",
+        "reason": "稼働状態に基づく待機サイトへの切り替えを構成していません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "DNSフェイルオーバーは、TTLやクライアントのキャッシュも考慮する。",
+    "sourceURL": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-failover.html"
+  },
+  {
+    "id": "saa-21",
+    "stage": 1,
+    "domain": "resilience",
+    "prompt": "SQSの画像処理で一部のメッセージだけ毎回失敗し、再試行を繰り返している。失敗メッセージを隔離して調査したい。設定するものは？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "適切なmaxReceiveCountを持つDLQ",
+        "reason": "一定回数処理できなかったメッセージをデッドレターキューへ移し、正常処理と分離して調査できます。"
+      },
+      {
+        "id": "b",
+        "text": "失敗時にキュー全体を毎回削除",
+        "reason": "正常メッセージも失い、処理すべき注文や画像が消えます。"
+      },
+      {
+        "id": "c",
+        "text": "可視性タイムアウトを常に0にする",
+        "reason": "すぐに再取得可能になり、隔離ではなく重複処理や再試行の増加を招きます。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "繰り返し失敗するメッセージは、再試行回数を設けてDLQへ。",
+    "sourceURL": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html"
+  },
+  {
+    "id": "saa-22",
+    "stage": 1,
+    "domain": "resilience",
+    "prompt": "Auto ScalingでWebサーバーを増減させると、ローカル保存のログインセッションが失われる。構成をステートレスに近づけるには？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "セッションを共有のElastiCacheなどへ外出し",
+        "reason": "セッション状態をWebサーバーから切り離すことで、別サーバーで要求を処理しやすくなります。"
+      },
+      {
+        "id": "b",
+        "text": "ALBのスティッキーセッションだけを有効化",
+        "reason": "同じサーバーへ誘導しても、サーバーの終了でローカルセッションが失われる問題は残ります。"
+      },
+      {
+        "id": "c",
+        "text": "スケールインを永久に禁止する",
+        "reason": "問題を回避するだけで状態の外部化にならず、不要なサーバーを削減できません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "水平スケールするアプリは、状態をサーバーの外へ置く。",
+    "sourceURL": "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_mitigate_interaction_failure_stateless.html"
+  },
+  {
+    "id": "saa-23",
+    "stage": 1,
+    "domain": "resilience",
+    "prompt": "複数のLambdaで受注処理を進める。処理順・再試行・エラー時の分岐を明示して管理したい。最適なサービスは？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "AWS Step Functions",
+        "reason": "状態マシンとして処理順や分岐、再試行、エラー処理を管理できます。"
+      },
+      {
+        "id": "b",
+        "text": "EventBridgeルールだけで全工程を管理する",
+        "reason": "イベントの配信先を設定できますが、複数工程の状態を保持し順序・再試行・分岐を管理するワークフローの代わりにはなりません。"
+      },
+      {
+        "id": "c",
+        "text": "1つのSQSキューだけで処理順と分岐を表現",
+        "reason": "キューはメッセージを保持しますが、複数処理の進行状態や条件分岐を管理する状態マシンではありません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "複数処理の流れ・分岐・再試行はStep Functionsで明示する。",
+    "sourceURL": "https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html"
+  },
+  {
+    "id": "saa-24",
+    "stage": 1,
+    "domain": "performance",
+    "prompt": "同じ商品情報のSELECTがRDSへ集中している。数十秒の古さは許容できる。低遅延化とDB負荷軽減に適切な構成は？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "ElastiCacheを使うキャッシュアサイド",
+        "reason": "まずキャッシュを参照し、ミス時にDBから取得して保存することで、繰り返し読み取りを減らせます。"
+      },
+      {
+        "id": "b",
+        "text": "同じクエリをDBに3回ずつ送る",
+        "reason": "追加リクエストで負荷が増え、キャッシュの効果は得られません。"
+      },
+      {
+        "id": "c",
+        "text": "EBSスナップショットを各要求で復元する",
+        "reason": "バックアップの復元はリクエストごとの低遅延な読み取り経路には不適切です。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "キャッシュ導入時は、許容する古さと無効化の方法も設計する。",
+    "sourceURL": "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Strategies.html"
+  },
+  {
+    "id": "saa-25",
+    "stage": 1,
+    "domain": "performance",
+    "prompt": "多数のLambdaが同時起動し、RDSの接続確立が集中している。接続をプールしてDBを保護したい。追加するものは？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Amazon RDS Proxy",
+        "reason": "アプリとDBの間で接続をプールし、接続の急増による負荷を抑えるのに役立ちます。"
+      },
+      {
+        "id": "b",
+        "text": "RDSのリードレプリカだけを追加",
+        "reason": "読み取り負荷の分散には役立ちますが、アプリからの接続をプールする仕組みではありません。"
+      },
+      {
+        "id": "c",
+        "text": "Lambdaの同時実行数上限をさらに増やす",
+        "reason": "接続を確立するLambdaが増えるため、DB接続が集中する問題を悪化させる可能性があります。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "LambdaからRDSへの接続が増えるなら、RDS Proxyを検討する。",
+    "sourceURL": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html"
+  },
+  {
+    "id": "saa-26",
+    "stage": 1,
+    "domain": "performance",
+    "prompt": "IoTイベントを継続的に取り込み、複数の処理が同じイベント列を独立して読みたい。保持期間内の再読込も必要。適切なサービスは？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Amazon Kinesis Data Streams",
+        "reason": "ストリームの保持期間内で複数コンシューマーがイベントを独立して処理・再読込できます。"
+      },
+      {
+        "id": "b",
+        "text": "1つのSQSキューを全処理で競合受信",
+        "reason": "競合する利用者でメッセージを取り合うため、同じ列をそれぞれ独立して読む要件に合いません。"
+      },
+      {
+        "id": "c",
+        "text": "SNSトピックだけでイベント列を保持する",
+        "reason": "SNSは通知を配信するサービスで、保持したイベント列をコンシューマーが任意位置から再読込するデータストリームではありません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "同じイベント列の独立した消費と再読込にはストリームを検討する。",
+    "sourceURL": "https://docs.aws.amazon.com/streams/latest/dev/introduction.html"
+  },
+  {
+    "id": "saa-27",
+    "stage": 1,
+    "domain": "cost",
+    "prompt": "AthenaでS3上の大量ログを日付指定で分析している。スキャン量を減らして性能と料金を改善したい。適切な方法は？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "日付でパーティション化し、Parquetを使う",
+        "reason": "対象の日付と必要な列へ読み取りを絞り、スキャンするデータ量を減らせます。"
+      },
+      {
+        "id": "b",
+        "text": "すべてのログを1つの巨大な非圧縮CSVにする",
+        "reason": "日付や列でスキャンを絞りにくくなり、不要データの読み取りが増えます。"
+      },
+      {
+        "id": "c",
+        "text": "クエリのSELECTを常にSELECT *へ変更する",
+        "reason": "必要な列に限定できず、列指向形式を使う場合も不要な読み取りが増えます。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "Athenaでは、必要なパーティションと列だけを読む。",
+    "sourceURL": "https://docs.aws.amazon.com/athena/latest/ug/performance-tuning-data-optimization-techniques.html"
+  },
+  {
+    "id": "saa-28",
+    "stage": 1,
+    "domain": "cost",
+    "prompt": "EC2のgp2ボリュームを、性能だけのために大きな容量で確保している。必要なIOPSとスループットを満たしつつ容量の無駄を減らす候補は？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "gp3へ移行し、性能を個別に設定",
+        "reason": "gp3では容量とIOPS・スループットを分けて設定でき、要件に合わせて調整できます。"
+      },
+      {
+        "id": "b",
+        "text": "gp2の容量をさらに増やす",
+        "reason": "性能のために容量を増やす構造が残り、容量の無駄を解消しません。"
+      },
+      {
+        "id": "c",
+        "text": "永続データをインスタンスストアだけに移す",
+        "reason": "一時領域へ移すとデータ保持の特性が変わり、永続化が必要な用途に適しません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "ストレージ性能と容量を独立して調整できるか確認する。",
+    "sourceURL": "https://docs.aws.amazon.com/ebs/latest/userguide/general-purpose.html"
+  },
+  {
+    "id": "saa-29",
+    "stage": 1,
+    "domain": "cost",
+    "prompt": "EC2の継続的な利用額があり、今後も一定量を使う。インスタンスファミリーやリージョンの変更余地を残して割引を得たい。適切な候補は？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Compute Savings Plans",
+        "reason": "一定の時間当たり利用額へのコミットメントにより、柔軟な対象範囲で割引が適用されます。"
+      },
+      {
+        "id": "b",
+        "text": "中断できない全処理をSpotだけにする",
+        "reason": "Spotは中断される可能性があるため、中断できない定常処理の唯一の実行基盤には適しません。"
+      },
+      {
+        "id": "c",
+        "text": "特定ファミリー・リージョンのEC2 Instance Savings Plans",
+        "reason": "Compute Savings Plansより対象が限定されるため、ファミリーやリージョンを変更する柔軟性の要件に合いません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "定常利用へのコミットと、将来必要な柔軟性を合わせて選ぶ。",
+    "sourceURL": "https://docs.aws.amazon.com/savingsplans/latest/userguide/plan-types.html"
+  },
+  {
+    "id": "saa-30",
+    "stage": 1,
+    "domain": "cost",
+    "prompt": "S3のデータでアクセス頻度が予測できず、頻繁に変化する。手動でクラスを切り替える負担を減らしたい。適切な候補は？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "S3 Intelligent-Tiering",
+        "reason": "アクセスパターンに応じた階層移動を行います。監視料金や対象オブジェクトの条件も評価します。"
+      },
+      {
+        "id": "b",
+        "text": "すべてを即座にGlacier Deep Archiveへ移す",
+        "reason": "即時に読む可能性があるデータに対し、復元待ちが必要なアーカイブは適しません。"
+      },
+      {
+        "id": "c",
+        "text": "すべてのオブジェクトを1分ごとに別リージョンへ複製",
+        "reason": "アクセス頻度に応じた保存クラス最適化ではなく、転送や複製の負担が増えます。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "不明・変動するアクセスパターンには自動階層化を検討する。",
+    "sourceURL": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/intelligent-tiering.html"
+  },
+  {
+    "id": "saa-31",
+    "stage": 2,
+    "domain": "security",
+    "prompt": "公開ALBのWebアプリでSQLインジェクション対策と、送信元IP単位の過剰リクエスト制限を加えたい。適切なサービスは？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "AWS WAFのマネージドルールとレートベースルール",
+        "reason": "Webリクエストの内容やIPごとのレートを評価し、ALBでアクセスを制御できます。"
+      },
+      {
+        "id": "b",
+        "text": "セキュリティグループでSQL文字列を検査する",
+        "reason": "SGはネットワーク接続を制御するもので、HTTP本文のSQLインジェクションを検査しません。"
+      },
+      {
+        "id": "c",
+        "text": "Amazon Macieだけを有効にする",
+        "reason": "Macieは主にS3内の機密データ検出を行い、ALBのWeb要求をフィルタリングする機能ではありません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "HTTPの内容に基づく防御はWAF。SGとはレイヤーが異なる。",
+    "sourceURL": "https://docs.aws.amazon.com/waf/latest/developerguide/what-is-aws-waf.html"
+  },
+  {
+    "id": "saa-32",
+    "stage": 2,
+    "domain": "security",
+    "prompt": "一般消費者向けのモバイルアプリで、ユーザー登録・ログイン・認証トークンをマネージドに実装したい。適切なサービスは？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Amazon Cognitoユーザープール",
+        "reason": "アプリ利用者向けのユーザーディレクトリ、認証とトークン発行を提供します。"
+      },
+      {
+        "id": "b",
+        "text": "全利用者へIAM管理者ユーザーを作る",
+        "reason": "AWSリソース管理用の強い権限を一般利用者へ渡す設計であり、アプリの認証要件に合いません。"
+      },
+      {
+        "id": "c",
+        "text": "認証情報をS3の公開JSONへ保存する",
+        "reason": "認証情報が第三者から読み取られ、アカウントを保護できません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "一般利用者のアプリ認証と、AWS管理者の認証を分ける。",
+    "sourceURL": "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools.html"
+  },
+  {
+    "id": "saa-33",
+    "stage": 2,
+    "domain": "security",
+    "prompt": "WebサーバーのSGで外向き通信の応答を許可したい。SGとネットワークACLの性質として正しいのは？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "SGはステートフル、NACLはステートレス",
+        "reason": "SGでは許可した通信の応答は自動的に許可されます。NACLは往復それぞれの許可を設計します。"
+      },
+      {
+        "id": "b",
+        "text": "SGもNACLも常にステートフル",
+        "reason": "NACLはステートレスなので、戻りの通信やエフェメラルポートも検討が必要です。"
+      },
+      {
+        "id": "c",
+        "text": "SGは拒否ルールを番号順に評価する",
+        "reason": "番号順の許可・拒否ルールを持つのはNACLです。SGのルールは許可を指定します。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "SGは接続状態を追跡。NACLは往復を個別に評価する。",
+    "sourceURL": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html"
+  },
+  {
+    "id": "saa-34",
+    "stage": 2,
+    "domain": "security",
+    "prompt": "プライベートサブネットのEC2からSecrets Managerへ接続したい。インターネット経路を使わずに到達させる方法は？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Secrets ManagerのインターフェイスVPCエンドポイント",
+        "reason": "AWS PrivateLinkのインターフェイスエンドポイントで、VPC内からサービスへプライベートに接続できます。"
+      },
+      {
+        "id": "b",
+        "text": "Secrets Manager用のゲートウェイエンドポイント",
+        "reason": "ゲートウェイエンドポイントの対象はS3とDynamoDBで、このサービスにはインターフェイス型を使います。"
+      },
+      {
+        "id": "c",
+        "text": "NAT Gateway経由で公開エンドポイントへ接続",
+        "reason": "プライベートEC2から通信はできますが、インターネット向け経路を作らずサービスへプライベート接続する要件には適しません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "サービスごとに、利用できるVPCエンドポイントの種類を確認する。",
+    "sourceURL": "https://docs.aws.amazon.com/secretsmanager/latest/userguide/vpc-endpoint-overview.html"
+  },
+  {
+    "id": "saa-35",
+    "stage": 2,
+    "domain": "security",
+    "prompt": "多数のS3バケットに、個人情報などの機密データが誤って置かれていないか継続して検出したい。適切なサービスは？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Amazon Macie",
+        "reason": "機械学習やパターン照合を用いて、S3内の機密データの検出と可視化を支援します。"
+      },
+      {
+        "id": "b",
+        "text": "AWS WAF",
+        "reason": "HTTPリクエストをフィルタリングするサービスで、S3の保存データ分類を行うものではありません。"
+      },
+      {
+        "id": "c",
+        "text": "Amazon Route 53 Resolver",
+        "reason": "DNSの名前解決を担い、S3オブジェクトの機密情報を検出しません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "S3内の機密データ検出はMacie。通信の防御とは別の役割。",
+    "sourceURL": "https://docs.aws.amazon.com/macie/latest/user/what-is-macie.html"
+  },
+  {
+    "id": "saa-36",
+    "stage": 2,
+    "domain": "security",
+    "prompt": "監査記録をS3で7年間保持し、保持期間中はルートユーザーでもオブジェクトバージョンを削除できないようにしたい。適切な設定は？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "S3 Object Lockのコンプライアンスモード",
+        "reason": "保持期間中のオブジェクトバージョンは、ルートユーザーを含めて削除・上書きできません。"
+      },
+      {
+        "id": "b",
+        "text": "Object Lockのガバナンスモードだけ",
+        "reason": "特別な権限を持つ利用者は保護をバイパスできるため、誰でも削除不可という要件とは異なります。"
+      },
+      {
+        "id": "c",
+        "text": "S3バージョニングだけ",
+        "reason": "バージョンを保持できますが、権限のある利用者によるバージョンの削除自体を禁止する保持機能ではありません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "削除不可の強さが要件なら、Object Lockのモードを確認する。",
+    "sourceURL": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html"
+  },
+  {
+    "id": "saa-37",
+    "stage": 2,
+    "domain": "resilience",
+    "prompt": "2つのAZのプライベートEC2が、片方のAZのNAT Gatewayを共有している。AZ障害への依存とAZ間転送を減らす改善は？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "AZごとにNAT Gatewayと対応する経路を用意",
+        "reason": "各AZのワークロードが同じAZのNATを使うことで、別AZのNATへの依存とAZ間転送を減らします。"
+      },
+      {
+        "id": "b",
+        "text": "共有NAT Gatewayを削除しIGWへの経路だけにする",
+        "reason": "プライベートIPv4インスタンスのインターネット向け通信に必要なNATの役割がなくなります。"
+      },
+      {
+        "id": "c",
+        "text": "同じAZ内でNAT Gatewayを2つに増やすだけ",
+        "reason": "NATを置くAZが同じままなので、そのAZへの障害依存は解消しません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "NAT GatewayはAZごとの障害境界と、転送料金を合わせて設計する。",
+    "sourceURL": "https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-basics.html"
+  },
+  {
+    "id": "saa-38",
+    "stage": 2,
+    "domain": "resilience",
+    "prompt": "災害対策で、別リージョンに縮小した一式の実行環境を常時動かし、障害時にスケールアップしたい。この方式は？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "ウォームスタンバイ",
+        "reason": "主要機能が動く縮小環境を待機させ、障害時に本番規模へ拡張する方式です。"
+      },
+      {
+        "id": "b",
+        "text": "バックアップ＆リストアだけ",
+        "reason": "障害後にバックアップから環境を復元する方式で、縮小した実行環境を常時動かす方式ではありません。"
+      },
+      {
+        "id": "c",
+        "text": "パイロットライト",
+        "reason": "データ等の中核部分を待機させ、復旧時に残りを起動・構築する方式です。主要機能が動く縮小環境一式を常時用意するウォームスタンバイとは異なります。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "DRはRTO・RPOと平常時コストのバランスで選択する。",
+    "sourceURL": "https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html"
+  },
+  {
+    "id": "saa-39",
+    "stage": 2,
+    "domain": "resilience",
+    "prompt": "S3の新規オブジェクトを別リージョンへ継続的に非同期複製したい。基本構成として必要な設定は？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "両バケットのバージョニングとCRRの設定",
+        "reason": "ソース・送信先でバージョニングを有効にし、権限等を整えたクロスリージョンレプリケーションを構成します。"
+      },
+      {
+        "id": "b",
+        "text": "ソースのバージョニングを無効にしてCRRを有効化",
+        "reason": "レプリケーションの前提となるソースバケットのバージョニングを満たしません。"
+      },
+      {
+        "id": "c",
+        "text": "同一リージョンレプリケーション（SRR）を設定",
+        "reason": "自動複製はできますが、別リージョンへの継続的な複製という要件にはCRRを選びます。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "S3レプリケーションは非同期。既存オブジェクトは別途Batch Replication等を検討する。",
+    "sourceURL": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html"
+  },
+  {
+    "id": "saa-40",
+    "stage": 2,
+    "domain": "resilience",
+    "prompt": "Auroraのグローバルなサービスで、主要リージョン障害への備えと、別リージョンでのローカル読み取りが必要。適切な候補は？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Amazon Aurora Global Database",
+        "reason": "リージョン間のストレージベースの複製を用い、別リージョンの読み取りや災害復旧に利用できます。"
+      },
+      {
+        "id": "b",
+        "text": "単一リージョン内のAuroraレプリカだけ",
+        "reason": "リージョン内の可用性や読み取り拡張には役立ちますが、リージョン全体の障害への備えには不足します。"
+      },
+      {
+        "id": "c",
+        "text": "別リージョンへスナップショットを定期コピーするだけ",
+        "reason": "バックアップからの復旧には使えますが、別リージョンで常時利用できる読み取り用DBは提供しません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "リージョン内の高可用性と、リージョンをまたぐDRを区別する。",
+    "sourceURL": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html"
+  },
+  {
+    "id": "saa-41",
+    "stage": 2,
+    "domain": "performance",
+    "prompt": "DynamoDBへの読み取りが集中している。結果整合性の読み取りでよく、マイクロ秒単位のキャッシュ応答を狙いたい。適切な候補は？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "DynamoDB Accelerator（DAX）",
+        "reason": "DynamoDB向けのインメモリキャッシュです。結果整合性の読み取りを高速化する用途に適します。"
+      },
+      {
+        "id": "b",
+        "text": "RDS Proxy",
+        "reason": "リレーショナルDBへの接続プールであり、DynamoDBの読み取りキャッシュではありません。"
+      },
+      {
+        "id": "c",
+        "text": "S3 Transfer Acceleration",
+        "reason": "S3への転送高速化であり、DynamoDBの応答をキャッシュしません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "DAXはDynamoDB専用。強い整合性が必要な読み取りとは分けて評価する。",
+    "sourceURL": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.html"
+  },
+  {
+    "id": "saa-42",
+    "stage": 2,
+    "domain": "performance",
+    "prompt": "既存のWindowsアプリがSMB共有とActive Directory認証を使う。アプリの変更を抑えてAWSへ移行する際の共有ストレージは？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Amazon FSx for Windows File Server",
+        "reason": "WindowsのSMBファイル共有とActive Directory統合を提供し、既存Windowsアプリに適します。"
+      },
+      {
+        "id": "b",
+        "text": "Amazon EFSをそのままSMBとして接続",
+        "reason": "EFSはNFSファイルサービスであり、SMBとAD統合を前提とする既存要件をそのまま満たしません。"
+      },
+      {
+        "id": "c",
+        "text": "Amazon FSx for Lustre",
+        "reason": "Lustreは高性能計算等に適したファイルシステムで、WindowsのSMBとAD認証を使う要件にはFSx for Windows File Serverを選びます。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "共有方式と認証基盤を確認して、EFSとFSxを選び分ける。",
+    "sourceURL": "https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html"
+  },
+  {
+    "id": "saa-43",
+    "stage": 2,
+    "domain": "performance",
+    "prompt": "世界中から利用するTCP/UDPアプリで、固定のAnycast IPとAWSネットワークを利用した経路最適化が必要。適切なサービスは？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "AWS Global Accelerator",
+        "reason": "固定Anycast IPを入口にして、AWSネットワーク経由で正常なリージョンのエンドポイントへルーティングします。"
+      },
+      {
+        "id": "b",
+        "text": "CloudFrontのキャッシュだけ",
+        "reason": "CloudFrontは主にHTTP系のコンテンツ配信であり、一般のTCP/UDPアプリ向け固定Anycast IPの要件とは異なります。"
+      },
+      {
+        "id": "c",
+        "text": "Route 53のレイテンシールーティングだけ",
+        "reason": "DNSで低遅延なリージョンを選べますが、アプリの固定Anycast IPとAWSネットワーク経由の転送を提供する構成ではありません。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "非HTTPを含むグローバル通信と固定IPにはGlobal Acceleratorを検討する。",
+    "sourceURL": "https://docs.aws.amazon.com/global-accelerator/latest/dg/what-is-global-accelerator.html"
+  },
+  {
+    "id": "saa-44",
+    "stage": 2,
+    "domain": "performance",
+    "prompt": "オンプレミスのNFSファイルをS3へ移す。ネットワーク接続はあり、初回転送後も変更分を定期同期したい。運用を減らせるサービスは？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "AWS DataSync",
+        "reason": "ファイルとAWSストレージ間の転送を自動化し、差分転送や検証・スケジュールを構成できます。"
+      },
+      {
+        "id": "b",
+        "text": "各ファイルを担当者が手作業で毎日アップロード",
+        "reason": "継続的な差分同期や転送の管理を人手に依存し、運用負担が大きくなります。"
+      },
+      {
+        "id": "c",
+        "text": "AWS Transfer Familyだけで既存NFSを同期",
+        "reason": "SFTP等のファイル転送プロトコル向けサービスであり、既存NFSサーバーからS3への差分同期を自動実行するDataSyncとは役割が異なります。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "ネットワークを使う継続的なファイル移行・同期にはDataSync。",
+    "sourceURL": "https://docs.aws.amazon.com/datasync/latest/userguide/what-is-datasync.html"
+  },
+  {
+    "id": "saa-45",
+    "stage": 2,
+    "domain": "cost",
+    "prompt": "AWSの月額費用が設定した予算を超えそうなときに、担当者へ通知したい。予測に基づく予算アラートに適切なサービスは？",
+    "choices": [
+      {
+        "id": "a",
+        "text": "AWS Budgets",
+        "reason": "実績や予測のしきい値に基づく予算通知を設定できます。通知を作るだけで全支出が自動停止するわけではありません。"
+      },
+      {
+        "id": "b",
+        "text": "AWS Cost Explorerのグラフだけを確認する",
+        "reason": "費用の分析や予測には役立ちますが、予算のしきい値を超えそうなときの担当者への通知はAWS Budgetsで設定します。"
+      },
+      {
+        "id": "c",
+        "text": "CloudWatchの請求アラームだけを設定する",
+        "reason": "実績の推定請求額に対するしきい値監視とは異なり、ここでは予測に基づく月次予算アラートが必要です。"
+      }
+    ],
+    "correctID": "a",
+    "takeaway": "予算通知はAWS Budgets。通知と支出の強制停止は別の設計。",
+    "sourceURL": "https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html"
+  }
+]

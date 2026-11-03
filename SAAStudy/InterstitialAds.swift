@@ -11,7 +11,7 @@ final class InterstitialAds: NSObject, ObservableObject, FullScreenContentDelega
     private var loading = false
     private var canLoadAds = false
 
-    // Debug uses Google test IDs; Release uses the dedicated AWStady(SAA) AdMob IDs.
+    // Debug uses Google test IDs; Release uses the dedicated AWSTUDY(SAA) AdMob IDs.
     private var unitID: String {
         Bundle.main.object(forInfoDictionaryKey: "AdMobInterstitialUnitID") as? String ?? ""
     }

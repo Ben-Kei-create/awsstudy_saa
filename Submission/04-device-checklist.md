@@ -4,8 +4,8 @@
 
 ## Apple
 
-- [ ] Explicit App ID `com.benkei.saastudy` を正しいTeamで登録
-- [ ] App Store Connectに `AWStady(SAA)` のiOSアプリレコードを作成
+- [ ] Explicit App ID `com.fumiaki.awsstudysaa` を正しいTeamで登録
+- [ ] App Store Connectに `AWSTUDY(SAA)` のiOSアプリレコードを作成
 - [ ] 名前・Bundle ID・SKU、iPhoneのみ、iOS17以降を照合
 - [ ] アカウント契約・トレーダー情報の検証状態を確認（公開連絡先は本人が直接入力）
 - [ ] 全世界配信の地域要件・許認可欄を確認。該当しない項目と未確認を区別
@@ -13,7 +13,7 @@
 - [ ] 年齢制限の全設問を実装・広告に合わせて回答。広告あり。地域別算定値を確認
 - [ ] 配布ArchiveのPrivacy Report、SDK、署名、権限、輸出コンプライアンスを照合
 - [ ] App Privacyのデータごとの用途・関連付け・トラッキングを確定
-- [ ] 1320×2868の提出画像6枚を6.9インチ枠へ入力し、実画面で受理を確認
+- [ ] 1206×2622の提出画像6枚を今回の6.1・6.3インチ枠へ入力し、実画面で受理を確認
 - [ ] 無料・全世界・審査後自動公開を設定。Mac・Vision Proの配信非対応を確認
 - [ ] 本人が署名してArchive・検証・アップロードし、App Store Connectで処理完了したバージョン1.0・ビルド1（変更した場合は最新番号）を選択
 

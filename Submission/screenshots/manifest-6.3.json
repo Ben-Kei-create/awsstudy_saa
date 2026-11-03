@@ -1,0 +1,104 @@
+[
+  {
+    "file": "/Applications/AWSCLIapp/SAAStudy/Submission/screenshots/iphone-6.3/01-start.jpg",
+    "properties": {
+      "pixelWidth": "1206",
+      "pixelHeight": "2622",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    },
+    "source": "AWSTUDY(SAA), com.fumiaki.awsstudysaa, actual settled Simulator UI, 2026-11-03",
+    "web_bytes": 62744,
+    "web_properties": {
+      "pixelWidth": "480",
+      "pixelHeight": "1043",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    }
+  },
+  {
+    "file": "/Applications/AWSCLIapp/SAAStudy/Submission/screenshots/iphone-6.3/02-question.jpg",
+    "properties": {
+      "pixelWidth": "1206",
+      "pixelHeight": "2622",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    },
+    "source": "AWSTUDY(SAA), com.fumiaki.awsstudysaa, actual settled Simulator UI, 2026-11-03",
+    "web_bytes": 60927,
+    "web_properties": {
+      "pixelWidth": "480",
+      "pixelHeight": "1043",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    }
+  },
+  {
+    "file": "/Applications/AWSCLIapp/SAAStudy/Submission/screenshots/iphone-6.3/03-explanation.jpg",
+    "properties": {
+      "pixelWidth": "1206",
+      "pixelHeight": "2622",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    },
+    "source": "AWSTUDY(SAA), com.fumiaki.awsstudysaa, actual settled Simulator UI, 2026-11-03",
+    "web_bytes": 79935,
+    "web_properties": {
+      "pixelWidth": "480",
+      "pixelHeight": "1043",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    }
+  },
+  {
+    "file": "/Applications/AWSCLIapp/SAAStudy/Submission/screenshots/iphone-6.3/04-result.jpg",
+    "properties": {
+      "pixelWidth": "1206",
+      "pixelHeight": "2622",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    },
+    "source": "AWSTUDY(SAA), com.fumiaki.awsstudysaa, actual settled Simulator UI, 2026-11-03",
+    "web_bytes": 51766,
+    "web_properties": {
+      "pixelWidth": "480",
+      "pixelHeight": "1043",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    }
+  },
+  {
+    "file": "/Applications/AWSCLIapp/SAAStudy/Submission/screenshots/iphone-6.3/05-review.jpg",
+    "properties": {
+      "pixelWidth": "1206",
+      "pixelHeight": "2622",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    },
+    "source": "AWSTUDY(SAA), com.fumiaki.awsstudysaa, actual settled Simulator UI, 2026-11-03",
+    "web_bytes": 64146,
+    "web_properties": {
+      "pixelWidth": "480",
+      "pixelHeight": "1043",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    }
+  },
+  {
+    "file": "/Applications/AWSCLIapp/SAAStudy/Submission/screenshots/iphone-6.3/06-review-result.jpg",
+    "properties": {
+      "pixelWidth": "1206",
+      "pixelHeight": "2622",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    },
+    "source": "AWSTUDY(SAA), com.fumiaki.awsstudysaa, actual settled Simulator UI, 2026-11-03",
+    "web_bytes": 32817,
+    "web_properties": {
+      "pixelWidth": "480",
+      "pixelHeight": "1043",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    }
+  }
+]

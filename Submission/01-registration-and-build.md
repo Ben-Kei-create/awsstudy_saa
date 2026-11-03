@@ -11,8 +11,8 @@
 | ソース | `/Applications/AWSCLIapp/SAAStudy` |
 | プロジェクト | `SAAStudy.xcodeproj` |
 | Scheme / Target | `SAAStudy` |
-| 表示名 | `AWStady(SAA)` |
-| Bundle ID | `com.benkei.saastudy` |
+| 表示名 | `AWSTUDY(SAA)` |
+| Bundle ID | `com.fumiaki.awsstudysaa` |
 | Team設定 | `7R927F3U4V`（本人のDeveloperアカウントで一致を確認） |
 | 署名方式 | Automatically manage signing / Automatic |
 | バージョン / ビルド | `1.0` / `1` |
@@ -23,9 +23,9 @@
 
 Apple DeveloperのCertificates, Identifiers & Profiles → Identifiers → ＋ → App IDs → App。
 
-- Description：`AWStady SAA`
+- Description：`AWSTUDY SAA`
 - Bundle ID：Explicit
-- Bundle IDの入力値：`com.benkei.saastudy`
+- Bundle IDの入力値：`com.fumiaki.awsstudysaa`
 - Capabilities：このアプリのために追加で有効化するものはありません。Push Notifications、Sign in with Apple、App Groups、iCloud、Game Centerなどを選択しません。
 - Explicit App IDでIn-App Purchaseがデフォルト表示されても、実装に課金機能があることは意味しません。本アプリにはStoreKit商品・購読はありません。
 - 最後に登録情報とTeamを確認し、本人がRegisterを実行してください。
@@ -35,10 +35,10 @@ Apple DeveloperのCertificates, Identifiers & Profiles → Identifiers → ＋ �
 App Store Connectのアカウント登録済み、対象アプリのApp ID／アプリレコードは未登録として扱っています。
 
 - Platform：iOS
-- Name：`AWStady(SAA)`（名称の空きは管理画面で確認）
+- Name：`AWSTUDY(SAA)`（名称の空きは管理画面で確認）
 - Primary language：Japanese
-- Bundle ID：上で登録した `com.benkei.saastudy`
-- SKU候補：`awstady-saa-ios-001`（未登録のため候補。既存SKUと衝突しないことを確認）
+- Bundle ID：上で登録した `com.fumiaki.awsstudysaa`
+- SKU：`awsstudysaa-ios-001`（本人指定値）
 - User Access：既存ユーザーのアクセスを変更しません。新規アプリ作成時の画面で本人が対象を確認してください。
 
 ## 3. 配布用署名とArchive

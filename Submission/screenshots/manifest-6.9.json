@@ -1,0 +1,62 @@
+[
+  {
+    "file": "/Applications/AWSCLIapp/SAAStudy/Submission/screenshots/iphone-6.9/01-start.jpg",
+    "properties": {
+      "pixelWidth": "1320",
+      "pixelHeight": "2868",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    },
+    "source": "AWSTUDY(SAA), com.fumiaki.awsstudysaa, actual settled Simulator UI, 2026-11-03"
+  },
+  {
+    "file": "/Applications/AWSCLIapp/SAAStudy/Submission/screenshots/iphone-6.9/02-question.jpg",
+    "properties": {
+      "pixelWidth": "1320",
+      "pixelHeight": "2868",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    },
+    "source": "AWSTUDY(SAA), com.fumiaki.awsstudysaa, actual settled Simulator UI, 2026-11-03"
+  },
+  {
+    "file": "/Applications/AWSCLIapp/SAAStudy/Submission/screenshots/iphone-6.9/03-explanation.jpg",
+    "properties": {
+      "pixelWidth": "1320",
+      "pixelHeight": "2868",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    },
+    "source": "AWSTUDY(SAA), com.fumiaki.awsstudysaa, actual settled Simulator UI, 2026-11-03"
+  },
+  {
+    "file": "/Applications/AWSCLIapp/SAAStudy/Submission/screenshots/iphone-6.9/04-result.jpg",
+    "properties": {
+      "pixelWidth": "1320",
+      "pixelHeight": "2868",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    },
+    "source": "AWSTUDY(SAA), com.fumiaki.awsstudysaa, actual settled Simulator UI, 2026-11-03"
+  },
+  {
+    "file": "/Applications/AWSCLIapp/SAAStudy/Submission/screenshots/iphone-6.9/05-review.jpg",
+    "properties": {
+      "pixelWidth": "1320",
+      "pixelHeight": "2868",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    },
+    "source": "AWSTUDY(SAA), com.fumiaki.awsstudysaa, actual settled Simulator UI, 2026-11-03"
+  },
+  {
+    "file": "/Applications/AWSCLIapp/SAAStudy/Submission/screenshots/iphone-6.9/06-review-result.jpg",
+    "properties": {
+      "pixelWidth": "1320",
+      "pixelHeight": "2868",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    },
+    "source": "AWSTUDY(SAA), com.fumiaki.awsstudysaa, actual settled Simulator UI, 2026-11-03"
+  }
+]

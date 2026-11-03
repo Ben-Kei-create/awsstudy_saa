@@ -1,10 +1,10 @@
-# AWStady(SAA) 申請準備（未完了）
+# AWSTUDY(SAA) 申請準備（未完了）
 
 2026-11-03。完成版のApp Store申請キットは、必須条件が整うまで出力しません。Apple／AdMob管理画面の操作、Archive、アップロード、審査送信は行っていません。
 
 ## 決定事項
 
-- 名前：AWStady(SAA)。Bundle ID `com.benkei.saastudy` は維持。
+- 名前：AWSTUDY(SAA)。Bundle IDは本人指定の `com.fumiaki.awsstudysaa` に更新。
 - iOS App／iPhoneのみ／iOS17以降。提出用はRelease Archive → App Store Connect。
 - 無料・アプリ内課金なし、全世界配信、審査承認後に自動公開。
 - 初回は興味・関心の独自収集なし・ATTなし。トレーダー。
@@ -24,7 +24,7 @@
 | 管理画面と実機の確認項目 | [04-device-checklist.md](04-device-checklist.md) |
 | 説明文・サブタイトル・キーワード・審査メモ等 | `drafts/` |
 | 上限と実測値 | [metadata-counts.json](metadata-counts.json) |
-| 提出用6枚（JPEG・1320×2868・透過なし） | `screenshots/iphone-6.9/` |
+| 今回の6.1・6.3インチ枠用6枚（JPEG・1206×2622・透過なし） | `screenshots/iphone-6.3/` |
 | 画像の検証情報 | [screenshots/manifest.json](screenshots/manifest.json) |
 | Releaseの実際の識別情報 | [evidence/release-build-info.json](evidence/release-build-info.json) |
 | 同梱SDKのマニフェスト | [evidence/sdk-privacy-manifests.json](evidence/sdk-privacy-manifests.json) |

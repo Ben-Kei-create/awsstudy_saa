@@ -8,7 +8,7 @@
 | Apple Add a new app | https://developer.apple.com/help/app-store-connect/create-an-app-record/add-a-new-app/ | アプリレコード |
 | Apple App information | https://developer.apple.com/help/app-store-connect/reference/app-information/app-information/ | 名前・サブタイトル・SKU・地域書類 |
 | Apple Platform version information | https://developer.apple.com/help/app-store-connect/reference/app-information/platform-version-information/ | 原稿上限・キーワード100バイト・公開方式・審査メモ |
-| Apple Screenshot specifications | https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/ | 6.9インチ1320×2868、1〜10枚、透過不可 |
+| Apple Screenshot specifications | https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/ | 6.3インチ1206×2622／6.9インチ1320×2868、1〜10枚、透過不可。今回の実画面も照合 |
 | Apple Creative assets specifications | https://developer.apple.com/help/app-store-connect/reference/app-information/creative-assets-specifications/ | 任意のヘッダ・検索結果素材と通常スクリーンショットの区別 |
 | Apple Age ratings values and definitions | https://developer.apple.com/help/app-store-connect/reference/app-information/age-ratings-values-and-definitions/ | 全設問候補と地域別算定 |
 | Apple Set an app age rating | https://developer.apple.com/help/app-store-connect/manage-app-information/set-an-app-age-rating | 設問による算定 |

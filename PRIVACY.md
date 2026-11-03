@@ -1,8 +1,8 @@
-# AWStady(SAA) プライバシーポリシー
+# AWSTUDY(SAA) プライバシーポリシー
 
 制定日：2026年11月3日 ／ 運営者：GiveTex
 
-GiveTexは、AWSの設計判断を学ぶiPhone用アプリ「AWStady(SAA)」（以下「本アプリ」）で扱う情報について、次のとおり説明します。
+GiveTexは、AWSの設計判断を学ぶiPhone用アプリ「AWSTUDY(SAA)」（以下「本アプリ」）で扱う情報について、次のとおり説明します。
 
 ## 1. アカウントと学習データ
 

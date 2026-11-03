@@ -31,3 +31,12 @@ UIテストではDebug限定起動引数で広告の読込を抑止。広告が�
 - モデルテスト成功。新名称・設定のDebugでiPhone 18 ProのUIテスト3件、失敗0。採点・復習・再復習・3ステージ進行・終了確認を再検証。UIテスト中の広告読込は抑止。
 - 実画面撮影用の一時的なテストを別フォルダで実行し、iPhone 18 Pro Maxで6画面を撮影。提出用はJPEG、1320×2868、透過なし。広告のライブ配信・地域別UMP・実機の検証済みとはしない。
 - App ID登録、署名付きArchive、アップロード、App Storeのビルド選択、審査送信は未実施。申請の完了条件と本人操作はSubmission/README.md参照。
+
+
+## 2026-11-03 登録値・提出枠の修正
+
+- 本人指定の表示名 `AWSTUDY(SAA)`、Bundle ID `com.fumiaki.awsstudysaa`、SKU `awsstudysaa-ios-001` に準備資料とプロジェクトを整合。SKUはストア管理用で、アプリ実行時の識別子には使用しません。
+- 新Bundle IDで署名なしReleaseのgeneric iOSビルド成功。Submission/evidence/release-build-info.jsonを実際の出力で更新。
+- 本人の実画面が受け付ける6.1・6.3インチ枠に合わせ、1206×2622の実画面6枚を撮影し直し、Submission/screenshots/iphone-6.3へ保存。6.9インチ用1320×2868とは分離。
+- App Store Connectのアップロード受理、App ID登録・署名・Archive・アップロードは本人操作のため未確認。
+- 新Bundle IDでiPhone 18 Pro（1206×2622）とiPhone 18 Pro Max（1320×2868）の撮影テストが成功。各15問の通常ステージ、11/15の結果、誤答4問の復習と4/4の復習結果を実際に操作しました。

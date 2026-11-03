@@ -1,4 +1,4 @@
-# AWStady(SAA)
+# AWSTUDY(SAA)
 
 SAA-C03（AWS Certified Solutions Architect – Associate）の設計判断を学ぶ、日本語のiPhone用3択クイズ。
 
@@ -24,9 +24,9 @@ SAA-C03（AWS Certified Solutions Architect – Associate）の設計判断を�
 
 実機では自分のApple Developer Teamを選び、Bundle IDの登録と署名設定を確認してください。
 
-- Bundle ID：`com.benkei.saastudy`
+- Bundle ID：`com.fumiaki.awsstudysaa`
 - バージョン：1.0 / ビルド1
-- 表示名：AWStady(SAA)
+- 表示名：AWSTUDY(SAA)
 
 ## 出題内容
 
@@ -38,7 +38,7 @@ SAA-C03（AWS Certified Solutions Architect – Associate）の設計判断を�
 
 Google Mobile Ads SDK 13.9.0とUMPをSwift Package Managerで導入。結果画面から移動するときに広告を表示し、読み込めない場合は直ちに進みます。復習中・出題中に全画面広告は出しません。
 
-**DebugはGoogleのテスト広告ID、Releaseは本人提供のAWStady(SAA)専用AdMobアプリ／インタースティシャルIDです。バナー広告ユニットは使用しません。AWSCLISTUDYの本番広告ユニットを流用していません。**
+**DebugはGoogleのテスト広告ID、Releaseは本人提供のAWSTUDY(SAA)専用AdMobアプリ／インタースティシャルIDです。バナー広告ユニットは使用しません。AWSCLISTUDYの本番広告ユニットを流用していません。**
 
 初回リリースはPublisher first-party IDを無効化し、非パーソナライズ扱い・広告コンテンツ上限Gを設定しています。SDKの診断・不正防止等のデータ処理は残るため、配布前にAdMobの同意メッセージ、地域設定、App Privacy、実機挙動を照合してください。
 

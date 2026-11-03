@@ -127,6 +127,10 @@
       "status": 200,
       "finalURL": "https://www.givetex.org/app-ads.txt",
       "matchesPublisherID": true
-    }
+    },
+    "finalImagePR": "https://github.com/Ben-Kei-create/GiveTeX/pull/17",
+    "finalMergeCommit": "836646dd928449a6c9672534b79a93913369e764",
+    "finalImageMatchesProduction": true,
+    "finalImageSHA256": "dd8d9cc7c37d8f8f3514c86ab164f5f9e4132d729109e1093f4fdc9e1d732f61"
   }
 }

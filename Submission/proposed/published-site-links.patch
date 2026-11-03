@@ -1,0 +1,16 @@
+--- a/SAAStudy/ContentView.swift
++++ b/SAAStudy/ContentView.swift
+@@ -455,11 +455,12 @@
+                     section("広告", "Google AdMobを利用します。結果画面から次のステージ・再挑戦・スタート画面へ移動するときに全画面広告を表示する場合があります。読み込みに失敗した場合は待たずに進めます。広告SDKはIPアドレス、端末識別子、広告の表示・操作情報、診断や性能情報などを扱う場合があります。IPアドレスからおおよその地域を推定する場合があります。")
+                     Text("必要な地域では同意画面を表示します。本アプリはトラッキング許可を要求しません。")
+                         .font(.subheadline).foregroundStyle(.secondary)
++                    Link("アプリのプライバシーポリシー", destination: URL(string: "https://givetex.org/apps/awstady-saa/privacy/")!)
+                     Link("Googleのプライバシーポリシー", destination: URL(string: "https://policies.google.com/privacy?hl=ja")!)
+                     if ads.privacyOptionsRequired {
+                         Button("広告のプライバシー設定") { Task { await ads.showPrivacyOptions() } }
+                     }
+-                    Link("サポート", destination: URL(string: "https://github.com/Ben-Kei-create/awsstudy_saa/issues")!)
++                    Link("サポート", destination: URL(string: "https://givetex.org/apps/awstady-saa/support/")!)
+                     Text("公開の問い合わせには個人情報を書き込まないでください。")
+                         .font(.caption).foregroundStyle(.secondary)
+                 }.padding(24)

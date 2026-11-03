@@ -63,7 +63,7 @@ struct ContentView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 22))
                     .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("SAA STUDY")
+                    Text("AWStady(SAA)")
                         .font(.system(size: 43, weight: .heavy, design: .rounded))
                         .tracking(-1.5).minimumScaleFactor(0.65).lineLimit(1)
                     HStack(spacing: 8) {

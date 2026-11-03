@@ -1,0 +1,15 @@
+--- a/SAAStudy/InterstitialAds.swift
++++ b/SAAStudy/InterstitialAds.swift
+@@ -23,6 +23,12 @@
+         if ProcessInfo.processInfo.arguments.contains("-ui-testing-no-ads") { return }
+         #endif
+         if !started {
++            // Initial release: avoid first-party ad personalization and adult ad content.
++            let configuration = MobileAds.shared.requestConfiguration
++            configuration.setPublisherFirstPartyIDEnabled(false)
++            configuration.publisherPrivacyPersonalizationState = .disabled
++            configuration.maxAdContentRating = .general
++
+             started = true
+             if usesTestAds {
+                 canLoadAds = true

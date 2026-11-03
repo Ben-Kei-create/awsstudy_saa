@@ -3,3 +3,6 @@ build/
 DerivedData/
 xcuserdata/
 *.xcuserstate
+
+# Local App Review contact details
+Submission/private/

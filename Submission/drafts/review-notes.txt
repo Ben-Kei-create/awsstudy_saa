@@ -1,0 +1,15 @@
+This is a Japanese-language, unofficial three-choice learning app for AWS architectural design, referencing the SAA-C03 exam domains. All 45 questions are original learning scenarios, not reproduced examination questions. The app is not endorsed by Amazon Web Services.
+
+No sign-in, subscription, in-app purchase, special hardware or account is required.
+
+Review flow:
+1. Tap はじめる on the start screen.
+2. Select one of three answers. The app reveals correctness, design points, reasons for every choice, and an official AWS documentation link.
+3. Tap 次の問題. After 15 questions, tap 結果を見る.
+4. Results show the original stage score and domain breakdown. 間違えたN問を復習 starts a separate missed-question review and does not change the original score.
+5. Scores of 11 or more unlock the next stage; 10 or fewer allow やり直す. This is a game progression threshold, not an official examination passing score.
+6. After clearing stage 3, スタートに戻る returns to the start.
+
+Google AdMob interstitial ads may appear only when leaving a stage results screen for the next stage, retry or start. Ads are not presented during questions or review, and unavailable ads do not block progression. UMP handles required consent and privacy choices. The app does not request ATT authorization.
+
+Learning answers and scores are held only during the app process and reset after it ends. Quiz content works offline; ads and external official documentation links require a network connection. The app does not send quiz answers or scores to an operator server. Information about the app and privacy can be opened using the information button on the start screen.

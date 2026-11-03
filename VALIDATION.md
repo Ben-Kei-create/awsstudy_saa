@@ -13,10 +13,21 @@
 
 ## 広告の確認範囲
 
-Debug・ReleaseともGoogleのテスト広告ID。旧アプリの本番IDは使用していません。通常起動ではAdMob SDKを使用します。UMPの開始はスタート画面に移し、出題・復習画面から同意フォームを開始しない構成です。
+2026-11-02の確認時はDebug・ReleaseともGoogleのテスト広告ID。2026-11-03にDebugは維持、Releaseは本人提供の専用IDへ変更しました。旧アプリの本番広告ユニットは使用していません。通常起動ではAdMob SDKを使用します。UMPの開始はスタート画面に移し、出題・復習画面から同意フォームを開始しない構成です。
 
 UIテストではDebug限定起動引数で広告の読込を抑止。広告が未読込でも結果から再挑戦・次ステージ・スタートへ進めることを確認しました。ライブ広告の表示・閉じる操作、地域別UMP、本番広告配信は今回の自動テスト対象外です。
 
 ## 申請前の残件
 
-本番署名と実機確認、SAA専用の本番広告ID設定・表示確認、プライバシーポリシー公開URL、App Store Connectの新アプリ登録・説明文・スクリーンショット・App Privacy・年齢制限などの申告、app-ads.txtの準備は未完了／未確認です。App Storeへのアップロード・審査提出は行っていません。
+本番署名と実機確認、SAA専用の本番広告表示確認、プライバシーポリシー公開URL、App Store Connectの新アプリ登録・説明文・スクリーンショット・App Privacy・年齢制限などの申告、app-ads.txtの準備は未完了／未確認です。App Storeへのアップロード・審査提出は行っていません。
+
+
+## 2026-11-03 申請準備
+
+- 名称をAWStady(SAA)に変更。Bundle ID・バージョン・ビルド番号は維持。
+- Releaseに本人提供のSAA専用AdMobアプリ／インタースティシャルIDを設定。DebugはテストID。バナーIDは不使用。
+- 本人承認によりPublisher first-party IDを無効化、Publisher Privacy Personalization Stateをdisabled、広告コンテンツ上限Gに設定。
+- 上記設定で署名なしReleaseのgeneric iOSビルド成功。識別情報とSDKマニフェストをSubmission/evidenceへ記録。
+- モデルテスト成功。新名称・設定のDebugでiPhone 18 ProのUIテスト3件、失敗0。採点・復習・再復習・3ステージ進行・終了確認を再検証。UIテスト中の広告読込は抑止。
+- 実画面撮影用の一時的なテストを別フォルダで実行し、iPhone 18 Pro Maxで6画面を撮影。提出用はJPEG、1320×2868、透過なし。広告のライブ配信・地域別UMP・実機の検証済みとはしない。
+- App ID登録、署名付きArchive、アップロード、App Storeのビルド選択、審査送信は未実施。申請の完了条件と本人操作はSubmission/README.md参照。

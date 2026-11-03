@@ -11,7 +11,7 @@ final class InterstitialAds: NSObject, ObservableObject, FullScreenContentDelega
     private var loading = false
     private var canLoadAds = false
 
-    // Both configurations use test IDs until a dedicated SAA AdMob app is configured.
+    // Debug uses Google test IDs; Release uses the dedicated AWStady(SAA) AdMob IDs.
     private var unitID: String {
         Bundle.main.object(forInfoDictionaryKey: "AdMobInterstitialUnitID") as? String ?? ""
     }
@@ -23,6 +23,12 @@ final class InterstitialAds: NSObject, ObservableObject, FullScreenContentDelega
         if ProcessInfo.processInfo.arguments.contains("-ui-testing-no-ads") { return }
         #endif
         if !started {
+            // Initial release: avoid first-party ad personalization and adult ad content.
+            let configuration = MobileAds.shared.requestConfiguration
+            configuration.setPublisherFirstPartyIDEnabled(false)
+            configuration.publisherPrivacyPersonalizationState = .disabled
+            configuration.maxAdContentRating = .general
+
             started = true
             if usesTestAds {
                 canLoadAds = true

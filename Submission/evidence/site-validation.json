@@ -1,0 +1,65 @@
+{
+  "checked": "2026-11-03",
+  "local": {
+    "baseURL": "http://127.0.0.1:8766",
+    "pages": [
+      {
+        "width": 1440,
+        "route": "",
+        "status": 200,
+        "overflow": false,
+        "allImagesLoaded": true
+      },
+      {
+        "width": 1440,
+        "route": "support/",
+        "status": 200,
+        "overflow": false,
+        "allImagesLoaded": true
+      },
+      {
+        "width": 1440,
+        "route": "privacy/",
+        "status": 200,
+        "overflow": false,
+        "allImagesLoaded": true
+      },
+      {
+        "width": 390,
+        "route": "",
+        "status": 200,
+        "overflow": false,
+        "allImagesLoaded": true
+      },
+      {
+        "width": 390,
+        "route": "support/",
+        "status": 200,
+        "overflow": false,
+        "allImagesLoaded": true
+      },
+      {
+        "width": 390,
+        "route": "privacy/",
+        "status": 200,
+        "overflow": false,
+        "allImagesLoaded": true
+      }
+    ]
+  },
+  "preview": {
+    "pr": "https://github.com/Ben-Kei-create/GiveTeX/pull/16",
+    "deploymentChecks": "SUCCESS",
+    "remoteBodyVerified": false,
+    "reason": "Vercel Authentication; connected account denied access (403). No protection settings changed.",
+    "commit": "7b35377799afe2169b6ff7a2259c756f89bb3593"
+  },
+  "production": {
+    "appPages": "404 before merge",
+    "appAdsTxt": {
+      "status": 200,
+      "finalURL": "https://www.givetex.org/app-ads.txt",
+      "matchesPublisherID": true
+    }
+  }
+}

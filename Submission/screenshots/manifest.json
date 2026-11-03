@@ -1,0 +1,104 @@
+[
+  {
+    "file": "/Applications/AWSCLIapp/SAAStudy/Submission/screenshots/iphone-6.9/01-start.jpg",
+    "properties": {
+      "pixelWidth": "1320",
+      "pixelHeight": "2868",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    },
+    "source": "Actual iPhone 18 Pro Max Simulator app, XCTest, settled UI, 2026-11-03",
+    "web_bytes": 64053,
+    "web_properties": {
+      "pixelWidth": "480",
+      "pixelHeight": "1043",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    }
+  },
+  {
+    "file": "/Applications/AWSCLIapp/SAAStudy/Submission/screenshots/iphone-6.9/02-question.jpg",
+    "properties": {
+      "pixelWidth": "1320",
+      "pixelHeight": "2868",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    },
+    "source": "Actual iPhone 18 Pro Max Simulator app, XCTest, settled UI, 2026-11-03",
+    "web_bytes": 59532,
+    "web_properties": {
+      "pixelWidth": "480",
+      "pixelHeight": "1043",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    }
+  },
+  {
+    "file": "/Applications/AWSCLIapp/SAAStudy/Submission/screenshots/iphone-6.9/03-explanation.jpg",
+    "properties": {
+      "pixelWidth": "1320",
+      "pixelHeight": "2868",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    },
+    "source": "Actual iPhone 18 Pro Max Simulator app, XCTest, settled UI, 2026-11-03",
+    "web_bytes": 82696,
+    "web_properties": {
+      "pixelWidth": "480",
+      "pixelHeight": "1043",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    }
+  },
+  {
+    "file": "/Applications/AWSCLIapp/SAAStudy/Submission/screenshots/iphone-6.9/04-result.jpg",
+    "properties": {
+      "pixelWidth": "1320",
+      "pixelHeight": "2868",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    },
+    "source": "Actual iPhone 18 Pro Max Simulator app, XCTest, settled UI, 2026-11-03",
+    "web_bytes": 54150,
+    "web_properties": {
+      "pixelWidth": "480",
+      "pixelHeight": "1043",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    }
+  },
+  {
+    "file": "/Applications/AWSCLIapp/SAAStudy/Submission/screenshots/iphone-6.9/05-review.jpg",
+    "properties": {
+      "pixelWidth": "1320",
+      "pixelHeight": "2868",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    },
+    "source": "Actual iPhone 18 Pro Max Simulator app, XCTest, settled UI, 2026-11-03",
+    "web_bytes": 53930,
+    "web_properties": {
+      "pixelWidth": "480",
+      "pixelHeight": "1043",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    }
+  },
+  {
+    "file": "/Applications/AWSCLIapp/SAAStudy/Submission/screenshots/iphone-6.9/06-review-result.jpg",
+    "properties": {
+      "pixelWidth": "1320",
+      "pixelHeight": "2868",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    },
+    "source": "Actual iPhone 18 Pro Max Simulator app, XCTest, settled UI, 2026-11-03",
+    "web_bytes": 31583,
+    "web_properties": {
+      "pixelWidth": "480",
+      "pixelHeight": "1043",
+      "hasAlpha": "no",
+      "format": "jpeg"
+    }
+  }
+]

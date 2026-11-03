@@ -1,0 +1,38 @@
+{
+  "name": {
+    "count": 12,
+    "limit": 30,
+    "unit": "characters",
+    "file": "drafts/name.txt"
+  },
+  "subtitle": {
+    "count": 22,
+    "limit": 30,
+    "unit": "characters",
+    "file": "drafts/subtitle.txt"
+  },
+  "promotional-text": {
+    "count": 89,
+    "limit": 170,
+    "unit": "characters",
+    "file": "drafts/promotional-text.txt"
+  },
+  "keywords": {
+    "count": 96,
+    "limit": 100,
+    "unit": "UTF-8 bytes",
+    "file": "drafts/keywords.txt"
+  },
+  "description": {
+    "count": 796,
+    "limit": 4000,
+    "unit": "characters",
+    "file": "drafts/description.txt"
+  },
+  "review-notes": {
+    "count": 1688,
+    "limit": 4000,
+    "unit": "UTF-8 bytes",
+    "file": "drafts/review-notes.txt"
+  }
+}

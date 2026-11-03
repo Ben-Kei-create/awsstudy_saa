@@ -1,0 +1,8 @@
+{
+  "note": "The captured UI source matches the current app UI; ad IDs and privacy controls do not alter these screens. Capture disables test ads in Debug.",
+  "sha256": {
+    "ContentView.swift": "091b6f6758cf57ec2b2dc491566475a730cc9e2897bba5a2b5d2ce5b4d9f12fd",
+    "StudyModel.swift": "ec65cc3d96f2900bb9b03d4c972d83920e327e76fc95723c4c7524a13c3a650d",
+    "Questions.json": "4d174dca585b45fcc4400c351e026b55f07578cc2a3d3d535b20c42976a77a7e"
+  }
+}

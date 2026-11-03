@@ -1,0 +1,16 @@
+{
+  "CFBundleDisplayName": "AWStady(SAA)",
+  "CFBundleIdentifier": "com.benkei.saastudy",
+  "CFBundleShortVersionString": "1.0",
+  "CFBundleVersion": "1",
+  "MinimumOSVersion": "17.0",
+  "UIDeviceFamily": [
+    1
+  ],
+  "ITSAppUsesNonExemptEncryption": false,
+  "GADApplicationIdentifier": "ca-app-pub-4859622277330192~4404081101",
+  "AdMobInterstitialUnitID": "ca-app-pub-4859622277330192/7934638717",
+  "DTXcode": "2720",
+  "DTPlatformVersion": "27.2",
+  "note": "Unsigned Release build, not an Archive or uploaded build."
+}

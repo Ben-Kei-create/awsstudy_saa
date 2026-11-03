@@ -40,7 +40,7 @@ struct ContentView: View {
         .preferredColorScheme(.dark)
         .task { loadQuestions() }
         .sheet(isPresented: $showsAbout) { AboutView(ads: ads) }
-        .confirmationDialog("今回の進み具合をリセットして戻りますか？", isPresented: $showsQuit, titleVisibility: .visible) {
+        .alert("今回の進み具合をリセットして戻りますか？", isPresented: $showsQuit) {
             Button("スタートに戻る", role: .destructive) { reset() }
             Button("続ける", role: .cancel) { }
         }
@@ -106,13 +106,15 @@ struct ContentView: View {
         .safeAreaInset(edge: .bottom, spacing: 0) {
             VStack(spacing: 12) {
                 PrimaryAction(title: "はじめる", symbol: "arrow.right") { start(stage: 0) }
-                Text("3択の学習用問題です。公式試験の出題形式とは異なります。")
+                    .accessibilityIdentifier("start")
+                Text("AWS非公式の3択学習アプリです。公式試験の出題形式とは異なります。")
                     .font(.caption2).foregroundStyle(Palette.muted).multilineTextAlignment(.center)
             }
             .padding(.horizontal, 24).padding(.top, 16).padding(.bottom, 12)
             .frame(maxWidth: 560).frame(maxWidth: .infinity)
             .background(Palette.background)
         }
+        .task { await ads.prepare() }
     }
 
     private func homeMetric(_ value: String, _ label: String) -> some View {
@@ -134,17 +136,20 @@ struct ContentView: View {
                             .font(.system(size: 24, weight: .semibold))
                             .lineSpacing(5).fixedSize(horizontal: false, vertical: true)
                             .accessibilityAddTraits(.isHeader)
-                        if active.selectedID != nil { explanation(active) }
+                            .accessibilityIdentifier("question-" + active.question.id)
+                        if active.selectedID != nil { explanation(active).id("answerExplanation") }
                     }
                     .padding(.horizontal, 24).padding(.bottom, 20)
                     .frame(maxWidth: 560, alignment: .leading)
                     .frame(maxWidth: .infinity)
                 }
                 .onChange(of: active.question.id) { _, _ in proxy.scrollTo("questionTop", anchor: .top) }
+                .onChange(of: active.selectedID) { _, selected in
+                    if selected != nil { proxy.scrollTo("answerExplanation", anchor: .top) }
+                }
             }
         }
         .safeAreaInset(edge: .bottom, spacing: 0) { choicesPanel(active) }
-        .task { await ads.prepare() }
     }
 
     private func quizHeader(_ active: QuizRun) -> some View {
@@ -196,6 +201,7 @@ struct ContentView: View {
                 enabled: active.selectedID != nil
             ) { nextQuestion() }
             .padding(.top, 3)
+            .accessibilityIdentifier("next")
         }
         .padding(.horizontal, 24).padding(.top, 14).padding(.bottom, 12)
         .frame(maxWidth: 560).frame(maxWidth: .infinity)
@@ -230,19 +236,20 @@ struct ContentView: View {
             .contentShape(RoundedRectangle(cornerRadius: 16))
         }
         .buttonStyle(AnswerButtonStyle()).disabled(answered)
+        .accessibilityIdentifier("choice-" + choice.id)
         .accessibilityLabel(choice.text + (correct ? "、正解" : wrong ? "、選んだ回答、不正解" : ""))
     }
 
     private func explanation(_ active: QuizRun) -> some View {
         let correct = active.selectedID == active.question.correctID
         return VStack(alignment: .leading, spacing: 18) {
-            Label(correct ? "正解" : "もう一歩", systemImage: correct ? "checkmark.circle.fill" : "arrow.counterclockwise.circle.fill")
+            Label(correct ? "正解" : "不正解", systemImage: correct ? "checkmark.circle.fill" : "arrow.counterclockwise.circle.fill")
                 .font(.headline).foregroundStyle(correct ? Palette.mint : Palette.amber)
             VStack(alignment: .leading, spacing: 7) {
                 Text("設計のポイント").font(.caption.weight(.bold)).foregroundStyle(Palette.amber)
                 Text(active.question.takeaway).font(.subheadline.weight(.semibold)).lineSpacing(4)
             }
-            ForEach(active.question.choices) { choice in
+            ForEach(active.choices) { choice in
                 VStack(alignment: .leading, spacing: 7) {
                     HStack(alignment: .top, spacing: 7) {
                         Image(systemName: choice.id == active.question.correctID ? "checkmark" : "minus")
@@ -274,6 +281,7 @@ struct ContentView: View {
                     .font(.largeTitle.bold()).accessibilityAddTraits(.isHeader)
                 HStack(alignment: .firstTextBaseline, spacing: 8) {
                     Text("\(completed.score)")
+                        .accessibilityIdentifier("stageScore")
                         .font(.system(size: 84, weight: .bold, design: .rounded)).foregroundStyle(Palette.amber)
                     Text("/ 15 問正解").font(.headline).foregroundStyle(Palette.muted)
                 }
@@ -299,6 +307,7 @@ struct ContentView: View {
                             .background(Palette.mint.opacity(0.08), in: RoundedRectangle(cornerRadius: 16))
                     }
                     .buttonStyle(.plain).disabled(transitioning)
+                    .accessibilityIdentifier("review")
                 }
                 if completed.canAdvance {
                     PrimaryAction(title: completed.stage == 2 ? "スタートに戻る" : "次のステージへ", symbol: "arrow.right", enabled: !transitioning) {
@@ -308,7 +317,7 @@ struct ContentView: View {
                         }
                     }
                 } else {
-                    PrimaryAction(title: "同じステージに再挑戦", symbol: "arrow.clockwise", enabled: !transitioning) {
+                    PrimaryAction(title: "やり直す", symbol: "arrow.clockwise", enabled: !transitioning) {
                         leaveResult { start(stage: completed.stage) }
                     }
                 }
@@ -350,6 +359,7 @@ struct ContentView: View {
             Text("ステージの成績は変わりません。\n理由を覚えて、次の挑戦へ。")
                 .font(.subheadline).foregroundStyle(Palette.muted).multilineTextAlignment(.center)
             PrimaryAction(title: "ステージの結果へ", symbol: "arrow.right") { review = nil }
+                .accessibilityIdentifier("returnToResult")
             if !completed.missed.isEmpty {
                 Button("残り\(completed.missed.count)問をもう一度") {
                     review = QuizRun(stage: completed.stage, questions: completed.missed, isReview: true)

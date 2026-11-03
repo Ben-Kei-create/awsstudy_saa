@@ -55,7 +55,11 @@ enum StudyContent {
                   question.choices.count == 3 && Set(question.choices.map(\.id)).count == 3 &&
                   Set(question.choices.map(\.text)).count == 3 &&
                   question.choices.contains { $0.id == question.correctID } &&
-                  !question.takeaway.isEmpty && question.choices.allSatisfy { !$0.reason.isEmpty } &&
+                  !question.id.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
+                  !question.prompt.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
+                  !question.takeaway.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
+                  question.choices.allSatisfy { !$0.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && !$0.reason.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty } &&
+                  URL(string: question.sourceURL)?.scheme == "https" &&
                   URL(string: question.sourceURL)?.host == "docs.aws.amazon.com"
               }) else { throw ContentError.invalidBank }
     }

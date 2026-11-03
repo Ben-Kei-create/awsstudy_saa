@@ -18,6 +18,10 @@ final class InterstitialAds: NSObject, ObservableObject, FullScreenContentDelega
     private var usesTestAds: Bool { unitID == "ca-app-pub-3940256099942544/4411468910" }
 
     func prepare() async {
+        #if DEBUG
+        // Keep UI tests deterministic; Release always uses the configured AdMob IDs.
+        if ProcessInfo.processInfo.arguments.contains("-ui-testing-no-ads") { return }
+        #endif
         if !started {
             started = true
             if usesTestAds {

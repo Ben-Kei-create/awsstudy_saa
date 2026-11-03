@@ -9,7 +9,7 @@ SAA-C03（AWS Certified Solutions Architect – Associate）の設計判断を�
 - 3ステージ×15問、全45問のオリジナル問題
 - 安全性14問、可用性12問、性能10問、コスト9問
 - 問題と選択肢を毎回シャッフル
-- 各ステージ11問以上で次へ。10問以下は同じステージに再挑戦
+- 各ステージ11問以上で次へ。10問以下は「やり直す」から同じステージに再挑戦
 - 間違えた問題だけの復習、復習後も元のスコアを維持
 - 分野ごとの正解数を表示
 - 回答前から「次へ」の領域を確保し、回答前は無効化
@@ -32,7 +32,7 @@ SAA-C03（AWS Certified Solutions Architect – Associate）の設計判断を�
 
 [公式試験ガイド](https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03.html)の4分野を参考にしています。各問題の`sourceURL`からサービスの公式資料を参照できます。
 
-問題は `SAAStudy/Questions.json`。正解だけでなく、すべての選択肢に理由を記述しています。サービスの変更に合わせて見直してください。45問ですべての試験範囲を網羅するものではありません。
+問題は `SAAStudy/Questions.json`。正解だけでなく、すべての選択肢に理由を記述しています。2026-11-02に公式資料の本文と設計条件を照合しました。確認内容は [CONTENT_REVIEW.md](CONTENT_REVIEW.md) を参照してください。サービスの変更に合わせて見直してください。45問ですべての試験範囲を網羅するものではありません。
 
 ## 広告と配信準備
 
@@ -40,7 +40,7 @@ Google Mobile Ads SDK 13.9.0とUMPをSwift Package Managerで導入。結果画�
 
 **Debug・ReleaseともGoogleのテスト広告IDです。本番配信前に、このアプリ専用のAdMobアプリ／広告ユニットを作り、Releaseの `ADMOB_APP_ID` と `ADMOB_INTERSTITIAL_UNIT_ID` を置き換えてください。AWSCLISTUDYの本番IDは使用していません。**
 
-本番IDを設定した場合は、UMPで同意情報を取得してから広告を読み込みます。必要な場合、「学習とプライバシー」から広告設定を変更できます。
+本番IDを設定した場合は、スタート画面でUMPの同意情報を取得してから広告を読み込みます。出題画面で同意フォームを開始しません。必要な場合、「学習とプライバシー」から広告設定を変更できます。
 
 `PRIVACY.md` は公開用ポリシー原稿です。公開先URLの設定、広告を含むApp Privacy・年齢制限の申告（広告あり）、app-ads.txt、App Store Connectの新アプリ登録が必要です。App Storeへのアップロード・審査提出はまだ行っていません。
 
@@ -52,3 +52,15 @@ swiftc SAAStudy/StudyModel.swift Tests/main.swift -o /tmp/saastudy-tests
 ```
 
 45問の構造、3択と正解の一意性、未回答／二重回答防止、10/11の境界、分野別成績、復習と元スコアの分離、不正データを検証します。
+
+
+XcodeのTest（⌘U）または次のコマンドでUIテストを実行できます。
+
+```sh
+xcodebuild test -project SAAStudy.xcodeproj -scheme SAAStudy \
+  -destination 'platform=iOS Simulator,name=iPhone 18 Pro' CODE_SIGNING_ALLOWED=NO
+```
+
+UIテストは実際の画面で回答・採点・10/11問の分岐・再挑戦・誤答復習と再復習・全3ステージの完了・終了確認を操作します。選択肢の回答前後の座標も検証します。テスト実行時だけDebugの起動引数`-ui-testing-no-ads`で広告の読込を抑止し、広告未読込でも画面遷移できることを確認します。通常起動とReleaseはテスト広告IDでAdMobを使用します。
+
+アイコンは提供されたクラウド／チェック画像に「SAA」を追加。制作プロンプトは [Design/icon-prompt.md](Design/icon-prompt.md) に記録しています。

@@ -1,8 +1,8 @@
-# AWSTUDY(SAA) プライバシーポリシー
+# AWSSTUDY(SAA) プライバシーポリシー
 
 制定日：2026年11月3日 ／ 運営者：GiveTex
 
-GiveTexは、AWSの設計判断を学ぶiPhone用アプリ「AWSTUDY(SAA)」（以下「本アプリ」）で扱う情報について、次のとおり説明します。
+GiveTexは、AWSの設計判断を学ぶiPhone用アプリ「AWSSTUDY(SAA)」（以下「本アプリ」）で扱う情報について、次のとおり説明します。
 
 ## 1. アカウントと学習データ
 
@@ -62,8 +62,8 @@ AWS公式資料やサポートなどの外部リンクを開くと、移動先�
 
 contact[at]givetex.org（[at] を @ に置き換えてください）
 
-[サポート](/apps/awstady-saa/support/) ／ [アプリの紹介](/apps/awstady-saa/)
+[サポート](https://givetex.org/apps/awstady-saa/support/) ／ [アプリの紹介](https://givetex.org/apps/awstady-saa/)
 
 このウェブサイト自体の情報の取り扱いは、[GiveTexのプライバシーポリシー](/privacy.html)をご覧ください。
 
-公開前原稿：GiveTeXのPR #16が公開されるまで、公開済みのポリシーURLとして扱いません。
+2026-11-03にGiveTeXの本番ページとして公開し、HTTP200と本文を確認しました。

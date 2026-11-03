@@ -63,8 +63,8 @@
 
 ## 公開ポリシーと選択URL
 
-- 公開予定ポリシー：`https://givetex.org/apps/awstady-saa/privacy/`（未公開、現状404）
-- 公開予定サポート：`https://givetex.org/apps/awstady-saa/support/`（未公開、現状404）
+- 公開ポリシー：`https://givetex.org/apps/awstady-saa/privacy/`（本番HTTP200・本文確認済み）
+- 公開サポート：`https://givetex.org/apps/awstady-saa/support/`（本番HTTP200・本文確認済み）
 - Privacy Choices URLは任意。専用のデータ管理ページはないため初回は未設定候補。必要なUMPプライバシー設定はアプリの情報画面に表示される構成。
 
 ## 管理画面と実機の残件
@@ -79,3 +79,14 @@ AdMobの欧州規制・米国州法等のPrivacy & messaging設定、UMPの同�
 - [Google Privacy strategies](https://developers.google.com/admob/ios/privacy/strategies)
 - [Publisher personalization state](https://developers.google.com/admob/ios/api/reference/Enums/GADPublisherPrivacyPersonalizationState.html)
 - [Google personalized and non-personalized ads](https://support.google.com/admob/answer/7676680)
+
+
+## 2026-11-03 公開時の追加確認
+
+公開URLは確定。アプリ内ポリシーリンクとサポートリンクは適用済みです。すべての広告リクエストに `npa=1` を追加し、PPT disabled・Publisher first-party ID無効と併用します。
+
+GoogleのPPT公式資料は、PPTだけでは第三者による広告配信・追跡が許される場合があると明示しています。NPAはGoogle需要に対する制限を強めますが、非Google需要・RTB等には管理画面の追加条件があるため、「ATT未要求」「NPA指定」だけを根拠にトラッキングの質問を確定しません。同梱13.9.0のデバイスIDに対するTracking=trueとの適用関係について、利用中の広告配信構成に対応した確認が残っています。
+
+この確認を行わず「トラッキングなし」と断定することも、単に保守的にTracking=trueへチェックしてATTなしのまま提出することも行いません。
+
+公式根拠：[Google Publisher Privacy Treatment API](https://support.google.com/admob/answer/14323214)、[Apple App Privacy Details](https://developer.apple.com/app-store/app-privacy-details/)。確認日2026-11-03。

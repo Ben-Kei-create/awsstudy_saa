@@ -40,3 +40,13 @@ UIテストではDebug限定起動引数で広告の読込を抑止。広告が�
 - 本人の実画面が受け付ける6.1・6.3インチ枠に合わせ、1206×2622の実画面6枚を撮影し直し、Submission/screenshots/iphone-6.3へ保存。6.9インチ用1320×2868とは分離。
 - App Store Connectのアップロード受理、App ID登録・署名・Archive・アップロードは本人操作のため未確認。
 - 新Bundle IDでiPhone 18 Pro（1206×2622）とiPhone 18 Pro Max（1320×2868）の撮影テストが成功。各15問の通常ステージ、11/15の結果、誤答4問の復習と4/4の復習結果を実際に操作しました。
+
+
+## 2026-11-03 本番サイト公開
+
+- 本人の公開指示を受け、GiveTeX PR #16をマージ。本番mainのVercelデプロイ成功を確認。
+- https://givetex.org/apps/awstady-saa/ とsupport/、privacy/の3ページがwwwホストの同一パスへ転送後HTTP200で、AWSSTUDY(SAA)の本文を表示することを確認。
+- 本番で390px・1440px幅の3ページを表示し、画像の読込・名称・横はみ出しなしを確認。
+- 名称を最新指定のAWSSTUDY(SAA)に統一し、アプリ内のプライバシーポリシーとサポートのリンクを公開URLへ設定。2サイズのホーム撮影・情報画面のリンク存在テスト成功。
+- 全広告リクエストへnpa=1を追加し、既存のPPT disabled・Publisher first-party ID無効と併用。署名なしReleaseビルド成功。
+- 公開URL・識別子は確定。App Privacyのトラッキング回答はSDKの一般宣言と実配信構成を照合するまで未確定。署名付きArchive・実機・管理画面を確認済みとは扱わない。

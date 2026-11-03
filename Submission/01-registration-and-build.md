@@ -11,7 +11,7 @@
 | ソース | `/Applications/AWSCLIapp/SAAStudy` |
 | プロジェクト | `SAAStudy.xcodeproj` |
 | Scheme / Target | `SAAStudy` |
-| 表示名 | `AWSTUDY(SAA)` |
+| 表示名 | `AWSSTUDY(SAA)` |
 | Bundle ID | `com.fumiaki.awsstudysaa` |
 | Team設定 | `7R927F3U4V`（本人のDeveloperアカウントで一致を確認） |
 | 署名方式 | Automatically manage signing / Automatic |
@@ -23,7 +23,7 @@
 
 Apple DeveloperのCertificates, Identifiers & Profiles → Identifiers → ＋ → App IDs → App。
 
-- Description：`AWSTUDY SAA`
+- Description：`AWSSTUDY SAA`
 - Bundle ID：Explicit
 - Bundle IDの入力値：`com.fumiaki.awsstudysaa`
 - Capabilities：このアプリのために追加で有効化するものはありません。Push Notifications、Sign in with Apple、App Groups、iCloud、Game Centerなどを選択しません。
@@ -35,7 +35,7 @@ Apple DeveloperのCertificates, Identifiers & Profiles → Identifiers → ＋ �
 App Store Connectのアカウント登録済み、対象アプリのApp ID／アプリレコードは未登録として扱っています。
 
 - Platform：iOS
-- Name：`AWSTUDY(SAA)`（名称の空きは管理画面で確認）
+- Name：`AWSSTUDY(SAA)`（名称の空きは管理画面で確認）
 - Primary language：Japanese
 - Bundle ID：上で登録した `com.fumiaki.awsstudysaa`
 - SKU：`awsstudysaa-ios-001`（本人指定値）

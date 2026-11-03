@@ -5,7 +5,7 @@
 ## Apple
 
 - [ ] Explicit App ID `com.fumiaki.awsstudysaa` を正しいTeamで登録
-- [ ] App Store Connectに `AWSTUDY(SAA)` のiOSアプリレコードを作成
+- [ ] App Store Connectに `AWSSTUDY(SAA)` のiOSアプリレコードを作成
 - [ ] 名前・Bundle ID・SKU、iPhoneのみ、iOS17以降を照合
 - [ ] アカウント契約・トレーダー情報の検証状態を確認（公開連絡先は本人が直接入力）
 - [ ] 全世界配信の地域要件・許認可欄を確認。該当しない項目と未確認を区別

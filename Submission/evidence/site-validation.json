@@ -55,7 +55,74 @@
     "commit": "9a9f9514ae545fafd3d551da0f780302f49aa4a9"
   },
   "production": {
-    "appPages": "404 before merge",
+    "checked": "2026-11-03",
+    "mergeCommit": "e9937eee4eaf7e9265a51094c5a3ae3f785f28a1",
+    "pr": "https://github.com/Ben-Kei-create/GiveTeX/pull/16",
+    "status": "PUBLISHED",
+    "pages": [
+      {
+        "url": "https://givetex.org/apps/awstady-saa/",
+        "finalURL": "https://www.givetex.org/apps/awstady-saa/",
+        "status": 200,
+        "correctName": true
+      },
+      {
+        "url": "https://givetex.org/apps/awstady-saa/support/",
+        "finalURL": "https://www.givetex.org/apps/awstady-saa/support/",
+        "status": 200,
+        "correctName": true
+      },
+      {
+        "url": "https://givetex.org/apps/awstady-saa/privacy/",
+        "finalURL": "https://www.givetex.org/apps/awstady-saa/privacy/",
+        "status": 200,
+        "correctName": true
+      }
+    ],
+    "responsiveChecks": [
+      {
+        "width": 1440,
+        "route": "",
+        "status": 200,
+        "overflow": false,
+        "allImagesLoaded": true
+      },
+      {
+        "width": 1440,
+        "route": "support/",
+        "status": 200,
+        "overflow": false,
+        "allImagesLoaded": true
+      },
+      {
+        "width": 1440,
+        "route": "privacy/",
+        "status": 200,
+        "overflow": false,
+        "allImagesLoaded": true
+      },
+      {
+        "width": 390,
+        "route": "",
+        "status": 200,
+        "overflow": false,
+        "allImagesLoaded": true
+      },
+      {
+        "width": 390,
+        "route": "support/",
+        "status": 200,
+        "overflow": false,
+        "allImagesLoaded": true
+      },
+      {
+        "width": 390,
+        "route": "privacy/",
+        "status": 200,
+        "overflow": false,
+        "allImagesLoaded": true
+      }
+    ],
     "appAdsTxt": {
       "status": 200,
       "finalURL": "https://www.givetex.org/app-ads.txt",

@@ -1,4 +1,4 @@
-# AWSTUDY(SAA)
+# AWSSTUDY(SAA)
 
 SAA-C03（AWS Certified Solutions Architect – Associate）の設計判断を学ぶ、日本語のiPhone用3択クイズ。
 
@@ -26,7 +26,7 @@ SAA-C03（AWS Certified Solutions Architect – Associate）の設計判断を�
 
 - Bundle ID：`com.fumiaki.awsstudysaa`
 - バージョン：1.0 / ビルド1
-- 表示名：AWSTUDY(SAA)
+- 表示名：AWSSTUDY(SAA)
 
 ## 出題内容
 
@@ -38,9 +38,9 @@ SAA-C03（AWS Certified Solutions Architect – Associate）の設計判断を�
 
 Google Mobile Ads SDK 13.9.0とUMPをSwift Package Managerで導入。結果画面から移動するときに広告を表示し、読み込めない場合は直ちに進みます。復習中・出題中に全画面広告は出しません。
 
-**DebugはGoogleのテスト広告ID、Releaseは本人提供のAWSTUDY(SAA)専用AdMobアプリ／インタースティシャルIDです。バナー広告ユニットは使用しません。AWSCLISTUDYの本番広告ユニットを流用していません。**
+**DebugはGoogleのテスト広告ID、Releaseは本人提供のAWSSTUDY(SAA)専用AdMobアプリ／インタースティシャルIDです。バナー広告ユニットは使用しません。AWSCLISTUDYの本番広告ユニットを流用していません。**
 
-初回リリースはPublisher first-party IDを無効化し、非パーソナライズ扱い・広告コンテンツ上限Gを設定しています。SDKの診断・不正防止等のデータ処理は残るため、配布前にAdMobの同意メッセージ、地域設定、App Privacy、実機挙動を照合してください。
+初回リリースはPublisher first-party IDを無効化し、PPT disabledと各リクエストのnpa=1で非パーソナライズ扱い、広告コンテンツ上限Gを設定しています。SDKの診断・不正防止等のデータ処理は残るため、配布前にAdMobの同意メッセージ、地域設定、App Privacy、実機挙動を照合してください。
 
 本番IDを設定した場合は、スタート画面でUMPの同意情報を取得してから広告を読み込みます。出題画面で同意フォームを開始しません。必要な場合、「学習とプライバシー」から広告設定を変更できます。
 
@@ -68,3 +68,5 @@ UIテストは実際の画面で回答・採点・10/11問の分岐・再挑戦�
 アイコンは提供されたクラウド／チェック画像に「SAA」を追加。制作プロンプトは [Design/icon-prompt.md](Design/icon-prompt.md) に記録しています。
 
 申請準備の原稿・提出画像・本人操作手順と未完了項目は [Submission/README.md](Submission/README.md) にまとめています。完成版の申請キットではありません。
+
+本番サイトを公開済み：[紹介](https://givetex.org/apps/awstady-saa/)／[サポート](https://givetex.org/apps/awstady-saa/support/)／[プライバシー](https://givetex.org/apps/awstady-saa/privacy/)。2026-11-03にHTTP200と表示を確認しました。

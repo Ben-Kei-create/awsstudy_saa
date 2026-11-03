@@ -1,6 +1,6 @@
 {
   "name": {
-    "count": 12,
+    "count": 13,
     "limit": 30,
     "unit": "characters",
     "file": "drafts/name.txt"
@@ -24,7 +24,7 @@
     "file": "drafts/keywords.txt"
   },
   "description": {
-    "count": 796,
+    "count": 797,
     "limit": 4000,
     "unit": "characters",
     "file": "drafts/description.txt"

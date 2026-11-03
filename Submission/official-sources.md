@@ -29,3 +29,5 @@
 | Google Set up app-ads.txt | https://support.google.com/admob/answer/9363762 | 開発者サイトと公開ストアの関連付け |
 
 SDKの実際の情報は `evidence/sdk-privacy-manifests.json`、署名なしReleaseの識別子は `evidence/release-build-info.json` に記録しています。
+
+追加確認：[Google Publisher Privacy Treatment API](https://support.google.com/admob/answer/14323214)（PPTとNPAの差、第三者の広告追跡に対する制限条件）。2026-11-03。

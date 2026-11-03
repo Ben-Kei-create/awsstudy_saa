@@ -11,7 +11,7 @@ final class InterstitialAds: NSObject, ObservableObject, FullScreenContentDelega
     private var loading = false
     private var canLoadAds = false
 
-    // Debug uses Google test IDs; Release uses the dedicated AWSTUDY(SAA) AdMob IDs.
+    // Debug uses Google test IDs; Release uses the dedicated AWSSTUDY(SAA) AdMob IDs.
     private var unitID: String {
         Bundle.main.object(forInfoDictionaryKey: "AdMobInterstitialUnitID") as? String ?? ""
     }
@@ -57,7 +57,11 @@ final class InterstitialAds: NSObject, ObservableObject, FullScreenContentDelega
         loading = true
         defer { loading = false }
         do {
-            ad = try await InterstitialAd.load(with: unitID, request: Request())
+            let request = Request()
+            let extras = Extras()
+            extras.additionalParameters = ["npa": "1"]
+            request.register(extras)
+            ad = try await InterstitialAd.load(with: unitID, request: request)
             ad?.fullScreenContentDelegate = self
         } catch {
             print("Interstitial unavailable: \(error.localizedDescription)")
